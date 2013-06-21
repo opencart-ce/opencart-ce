@@ -3,6 +3,9 @@ opencart-ce
 
 OpenCart Community Edition is an unofficial fork dedicated to backporting all the latest OpenCart bug fixes so users can maintain a stable and secure store without having to wait extended periods between major releases or upgrade to an OpenCart version which may be incompatible with their extensions or themes.
 
+## Roadmap
+The repo is set to initially include OpenCart 1.5.5.x and 1.5.4.x with possible expansion to earlier 1.5.x versions at a later date.  To reduce file size and help code alignment in GitHub, inconsistencies in whitespace (a space mixed in with the tabs and vice versa) will be fixed on the initial push.  Please make sure you're using this whitespace standardized version when submitting a pull request and not an OpenCart default version.
+
 ## Contribution Guidelines
 
  1. The OpenCart Community Edition GitHub repository is for submitting bug reports and bug fixes.  If you need assistance troubleshooting an issue with OpenCart please use the official community support forums at [forum.opencart.com](http://forum.opencart.com).
