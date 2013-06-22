@@ -15,6 +15,7 @@ The repo is set to initially include OpenCart 1.5.5.x and 1.5.4.x with possible 
  5. Attempt to keep changes as minimal as possible.  Significant changes to code risk causing compatibility issues with third-party mods.
  6. Significant code changes which may impact third-party mods or themes should be discussed before inclussion.
  7. If a bug is fixed in the official OpenCart repository with minimal changes that method is preferred in Community Edition.
- 8. If applicable submit a bug report or fix to the [opencart/opencart core](https://github.com/opencart/opencart).
- 9. Only submit code that you have the rights to or that is released under GPL.  Code from commercial mods or mods not explicitly released under GPL is prohibited.
- 10. Pull requests and bug reports that are closed without action will include a statement why.  Feel free to advocate for re-opening the issue but please note the decision may not be reversed.  Remember, closing an issue is not meant as a personal attack against you.  It's about what's best for the project.
+ 8. When backporting an official OpenCart bugfix include a link to their commit in the description for reference.
+ 9. If applicable submit a bug report or fix to the [opencart/opencart core](https://github.com/opencart/opencart).
+ 10. Only submit code that you have the rights to or that is released under GPL.  Code from commercial mods or mods not explicitly released under GPL is prohibited.
+ 11. Pull requests and bug reports that are closed without action will include a statement why.  Feel free to advocate for re-opening the issue but please note the decision may not be reversed.  Remember, closing an issue is not meant as a personal attack against you.  It's about what's best for the project.
