@@ -629,7 +629,7 @@ class ModelSaleOrder extends Model {
 	}
 
 	public function createInvoiceNo($order_id) {
-		$order_info = $this->getOrder($this->request->get['order_id']);
+		$order_info = $this->getOrder($order_id);
 
 		if ($order_info && !$order_info['invoice_no']) {
 			$query = $this->db->query("SELECT MAX(invoice_no) AS invoice_no FROM `" . DB_PREFIX . "order` WHERE invoice_prefix = '" . $this->db->escape($order_info['invoice_prefix']) . "'");
@@ -743,7 +743,7 @@ class ModelSaleOrder extends Model {
 			$implode[] = "op.product_id = '" . $product_id . "'";
 		}
 
-		$query = $this->db->query("SELECT DISTINCT email FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "order_product op ON (o.order_id = op.order_id) WHERE (" . implode(" OR ", $implode) . ") AND o.order_status_id <> '0'");
+		$query = $this->db->query("SELECT DISTINCT email FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "order_product op ON (o.order_id = op.order_id) WHERE (" . implode(" OR ", $implode) . ") AND o.order_status_id <> '0' LIMIT " . (int)$start . "," . (int)$end);
 
 		return $query->rows;
 	}
