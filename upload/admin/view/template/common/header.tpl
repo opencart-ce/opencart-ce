@@ -204,7 +204,7 @@ $(document).ready(function(){
           <?php } ?>
         </ul>
       </li>
-      <li id="store"><a class="top" href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
+      <li><a class="top" href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
     </ul>
     <script type="text/javascript"><!--
 $(document).ready(function() {
