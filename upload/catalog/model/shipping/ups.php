@@ -121,14 +121,14 @@ class ModelShippingUps extends Model {
 			$xml .= '		<RequestAction>Rate</RequestAction>';
 			$xml .= '		<RequestOption>shop</RequestOption>';
 			$xml .= '	</Request>';
-			$xml .= '   <PickupType>';
-			$xml .= '       <Code>' . $this->config->get('ups_pickup') . '</Code>';
-			$xml .= '   </PickupType>';
+			$xml .= '	<PickupType>';
+			$xml .= '		<Code>' . $this->config->get('ups_pickup') . '</Code>';
+			$xml .= '	</PickupType>';
 
 			if ($this->config->get('ups_country') == 'US' && $this->config->get('ups_pickup') == '11') {
-				$xml .= '   <CustomerClassification>';
-				$xml .= '       <Code>' . $this->config->get('ups_classification') . '</Code>';
-				$xml .= '   </CustomerClassification>';
+				$xml .= '	<CustomerClassification>';
+				$xml .= '		<Code>' . $this->config->get('ups_classification') . '</Code>';
+				$xml .= '	</CustomerClassification>';
 			}
 
 			$xml .= '	<Shipment>';
@@ -184,12 +184,12 @@ class ModelShippingUps extends Model {
 			$xml .= '			</PackageWeight>';
 
 			if ($this->config->get('ups_insurance')) {
-				$xml .= '           <PackageServiceOptions>';
-				$xml .= '               <InsuredValue>';
-				$xml .= '                   <CurrencyCode>' . $this->currency->getCode() . '</CurrencyCode>';
-				$xml .= '                   <MonetaryValue>' . $this->currency->format($this->cart->getTotal(), false, false, false) . '</MonetaryValue>';
-				$xml .= '               </InsuredValue>';
-				$xml .= '           </PackageServiceOptions>';
+				$xml .= '			<PackageServiceOptions>';
+				$xml .= '				<InsuredValue>';
+				$xml .= '					<CurrencyCode>' . $this->currency->getCode() . '</CurrencyCode>';
+				$xml .= '					<MonetaryValue>' . $this->currency->format($this->cart->getSubTotal(), false, false, false) . '</MonetaryValue>';
+				$xml .= '				</InsuredValue>';
+				$xml .= '			</PackageServiceOptions>';
 			}
 
 			$xml .= '		</Package>';
