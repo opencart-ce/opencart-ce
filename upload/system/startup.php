@@ -69,6 +69,10 @@ if (!isset($_SERVER['REQUEST_URI'])) {
 	}
 }
 
+if (empty($_SERVER['HTTP_HOST'])) {
+	$_SERVER['HTTP_HOST'] = getenv('HTTP_HOST');
+}
+
 // Helper
 require_once(DIR_SYSTEM . 'helper/json.php');
 require_once(DIR_SYSTEM . 'helper/utf8.php');
