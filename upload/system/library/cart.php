@@ -289,6 +289,11 @@ class Cart {
 
 	public function clear() {
 		$this->session->data['cart'] = array();
+
+		if (isset($this->session->data['customer_id'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "customer SET cart = '' WHERE customer_id = '" . (int)$this->session->data['customer_id'] . "'");
+		} 
+
 		$this->data = array();
 	}
 
