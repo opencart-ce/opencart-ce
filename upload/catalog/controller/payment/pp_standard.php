@@ -127,6 +127,7 @@ class ControllerPaymentPPStandard extends Controller {
 				$curl = curl_init('https://www.sandbox.paypal.com/cgi-bin/webscr');
 			}
 
+			curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 			curl_setopt($curl, CURLOPT_POST, true);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
