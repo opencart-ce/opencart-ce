@@ -613,6 +613,7 @@ class ControllerSaleCoupon extends Controller {
 		$pagination->total = $history_total;
 		$pagination->page = $page;
 		$pagination->limit = 10;
+		$pagination->text = $this->language->get('text_pagination');
 		$pagination->url = $this->url->link('sale/coupon/history', 'token=' . $this->session->data['token'] . '&coupon_id=' . $this->request->get['coupon_id'] . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
