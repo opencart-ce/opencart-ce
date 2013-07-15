@@ -15,6 +15,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.extraPlugins = 'codemirror';
 	config.codemirror_theme = 'rubyblue';
 	config.toolbar = 'Custom';
+	config.allowedContent = true;
 
 	config.toolbar_Custom = [
 		['Source'],
