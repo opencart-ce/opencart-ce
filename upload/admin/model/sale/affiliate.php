@@ -39,7 +39,7 @@ class ModelSaleAffiliate extends Model {
 		}
 
 		if (!empty($data['filter_email'])) {
-			$implode[] = "a.email = '" . $this->db->escape($data['filter_email']) . "'";
+			$implode[] = "LCASE(a.email) = '" . $this->db->escape(utf8_strtolower($data['filter_email'])) . "'";
 		}
 
 		if (!empty($data['filter_code'])) {
