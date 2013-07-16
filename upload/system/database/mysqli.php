@@ -18,13 +18,11 @@ final class MySQLi {
 	public function query($sql) {
 		$result = $this->mysqli->query($sql);
 
-
-
 		if ($this->mysqli->errno) {
 		//$mysqli->errno
 		}
 
-			if (is_resource($resource)) {
+			if (is_resource($result)) {
 				$i = 0;
 
 				$data = array();
@@ -43,9 +41,6 @@ final class MySQLi {
 				$query->num_rows = $result->num_rows;
 
 				unset($data);
-
-
-
 
 				return $query;
 			} else {
