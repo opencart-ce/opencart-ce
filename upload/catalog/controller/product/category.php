@@ -278,11 +278,13 @@ class ControllerProductCategory extends Controller {
 
 			$this->data['limits'] = array();
 
-			$this->data['limits'][] = array(
-				'text'  => $this->config->get('config_catalog_limit'),
-				'value' => $this->config->get('config_catalog_limit'),
-				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&limit=' . $this->config->get('config_catalog_limit'))
-			);
+			if (!in_array($this->config->get('config_catalog_limit'), array(25, 50, 75, 100))) {
+				$this->data['limits'][] = array(
+					'text'  => $this->config->get('config_catalog_limit'),
+					'value' => $this->config->get('config_catalog_limit'),
+					'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&limit=' . $this->config->get('config_catalog_limit'))
+				);
+			}
 
 			$this->data['limits'][] = array(
 				'text'  => 25,
