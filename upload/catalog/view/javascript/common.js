@@ -68,7 +68,7 @@ $(document).ready(function() {
 			$('.box-category ul li a.active + ul').css('display', 'block');	
 		}
 		
-		if ($.browser.version <= 7) {
+		if ($.browser.version <= 7 || $.browser.version == 10) {
 			$('#menu > ul > li').bind('mouseover', function() {
 				$(this).addClass('active');
 			});
