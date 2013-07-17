@@ -121,9 +121,9 @@ class ControllerPaymentPPProUK extends Controller {
 		$request .= '&CARDISSUE=' . urlencode($this->request->post['cc_issue']);
 
 		if (!$this->config->get('pp_pro_uk_test')) {
-			$curl = curl_init('https://payflowpro.verisign.com/transaction');
+			$curl = curl_init('https://payflowpro.paypal.com');
 		} else {
-			$curl = curl_init('https://pilot-payflowpro.verisign.com/transaction');
+			$curl = curl_init('https://pilot-payflowpro.paypal.com');
 		}
 
 		curl_setopt($curl, CURLOPT_PORT, 443);
@@ -138,11 +138,11 @@ class ControllerPaymentPPProUK extends Controller {
 
 		$response = curl_exec($curl);
 
-		curl_close($curl);
-
 		if (!$response) {
 			$this->log->write('DoDirectPayment failed: ' . curl_error($curl) . '(' . curl_errno($curl) . ')');
 		}
+
+		curl_close($curl);
 
 		$response_info = array();
 
