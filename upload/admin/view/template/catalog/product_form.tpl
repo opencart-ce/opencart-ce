@@ -743,6 +743,11 @@ $('input[name=\'manufacturer\']').autocomplete({
 			url: 'index.php?route=catalog/manufacturer/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request.term),
 			dataType: 'json',
 			success: function(json) {
+				json.unshift({
+					'manufacturer_id': 0,
+					'name': '<?php echo $text_none; ?>'
+				});
+
 				response($.map(json, function(item) {
 					return {
 						label: item.name,
@@ -760,6 +765,10 @@ $('input[name=\'manufacturer\']').autocomplete({
 	},
 	focus: function(event, ui) {
 		return false;
+	}
+}).bind('focus', function() {
+	if (!$(this).autocomplete('widget').is(':visible')) {
+		$(this).delay(500).promise().done(function () { $(this).autocomplete('search', $(this).val() ? $(this).val() : ' '); });
 	}
 });
 
