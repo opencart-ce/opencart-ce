@@ -87,6 +87,9 @@ class Cart {
 										'weight'                  => $option_value_query->row['weight'],
 										'weight_prefix'           => $option_value_query->row['weight_prefix']
 									);
+								} else {
+									$this->remove($key);
+									continue 2;
 								}
 							} elseif ($option_query->row['type'] == 'checkbox' && is_array($option_value)) {
 								foreach ($option_value as $product_option_value_id) {
@@ -132,6 +135,9 @@ class Cart {
 											'weight'                  => $option_value_query->row['weight'],
 											'weight_prefix'           => $option_value_query->row['weight_prefix']
 										);
+									} else {
+										$this->remove($key);
+										continue 3;
 									}
 								}
 							} elseif ($option_query->row['type'] == 'text' || $option_query->row['type'] == 'textarea' || $option_query->row['type'] == 'file' || $option_query->row['type'] == 'date' || $option_query->row['type'] == 'datetime' || $option_query->row['type'] == 'time') {
@@ -153,6 +159,9 @@ class Cart {
 									'weight_prefix'           => ''
 								);
 							}
+						} else {
+							$this->remove($key);
+							continue 2;
 						}
 					}
 
