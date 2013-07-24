@@ -35,7 +35,6 @@ $_['text_localisation']                = 'Localisation';
 $_['text_logged']                      = 'You are logged in as <span>%s</span>';
 $_['text_logout']                      = 'Logout';
 $_['text_contact']                     = 'Mail';
-$_['text_manager']                     = 'Extension Manager';
 $_['text_manufacturer']                = 'Manufacturers';
 $_['text_module']                      = 'Modules';
 $_['text_option']                      = 'Options';
