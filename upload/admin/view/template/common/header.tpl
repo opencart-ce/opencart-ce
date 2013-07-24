@@ -191,7 +191,7 @@ $(document).ready(function(){
       <li id="help"><a class="top"><?php echo $text_help; ?></a>
         <ul>
           <li><a onClick="window.open('http://www.opencart.com');"><?php echo $text_opencart; ?></a></li>
-          <li><a onClick="window.open('http://doc.opencart.com');"><?php echo $text_documentation; ?></a></li>
+          <li><a onClick="window.open('http://docs.opencart.com');"><?php echo $text_documentation; ?></a></li>
           <li><a onClick="window.open('http://forum.opencart.com');"><?php echo $text_support; ?></a></li>
         </ul>
       </li>
