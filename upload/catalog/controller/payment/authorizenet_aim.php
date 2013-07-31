@@ -55,7 +55,7 @@ class ControllerPaymentAuthorizeNetAim extends Controller {
 
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
-        $data = array();
+		$data = array();
 
 		$data['x_login'] = $this->config->get('authorizenet_aim_login');
 		$data['x_tran_key'] = $this->config->get('authorizenet_aim_key');
