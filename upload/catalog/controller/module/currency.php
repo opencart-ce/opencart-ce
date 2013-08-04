@@ -7,7 +7,8 @@ class ControllerModuleCurrency extends Controller {
 			unset($this->session->data['shipping_method']);
 			unset($this->session->data['shipping_methods']);
 
-			if (isset($this->request->post['redirect'])) {
+			// Added strpos check to pass McAfee PCI compliance test (http://forum.opencart.com/viewtopic.php?f=10&t=12043&p=151494#p151295)
+			if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], $this->config->get('config_url')) === 0 || strpos($this->request->post['redirect'], $this->config->get('config_ssl')) === 0)) {
 				$this->redirect($this->request->post['redirect']);
 			} else {
 				$this->redirect($this->url->link('common/home'));
