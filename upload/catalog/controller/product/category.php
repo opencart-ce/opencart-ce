@@ -341,7 +341,7 @@ class ControllerProductCategory extends Controller {
 
 			sort($limits);
 
-			foreach ($limits as $value){
+			foreach ($limits as $value) {
 				$this->data['limits'][] = array(
 					'text'  => $value,
 					'value' => $value,
