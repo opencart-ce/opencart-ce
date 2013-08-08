@@ -459,15 +459,15 @@ class ControllerCheckoutManual extends Controller {
 
 					$this->{'model_total_' . $result['code']}->getTotal($json['order_total'], $total, $taxes);
 				}
-
-				$sort_order = array();
-
-				foreach ($json['order_total'] as $key => $value) {
-					$sort_order[$key] = $value['sort_order'];
-				}
-
-				array_multisort($sort_order, SORT_ASC, $json['order_total']);
 			}
+
+			$sort_order = array();
+
+			foreach ($json['order_total'] as $key => $value) {
+				$sort_order[$key] = $value['sort_order'];
+			}
+
+			array_multisort($sort_order, SORT_ASC, $json['order_total']);
 
 			// Payment
 			if ($this->request->post['payment_country_id'] == '') {
