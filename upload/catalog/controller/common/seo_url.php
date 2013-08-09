@@ -59,7 +59,7 @@ class ControllerCommonSeoUrl extends Controller {
 				}
 			}
 
-			if (isset($this->request->get['route'])) {
+			if (isset($this->request->get['route']) && (!$this->config->get('config_maintenance') || isset($this->session->data['token']))) {
 				return $this->forward($this->request->get['route']);
 			}
 		}
