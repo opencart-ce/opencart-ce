@@ -40,6 +40,9 @@ class ControllerCommonMaintenance extends Controller {
 
 		$this->data['message'] = $this->language->get('text_message');
 
+		$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . '/1.1 503 Service Temporarily Unavailable');
+		$this->response->addHeader('Retry-After: ' . gmdate('D, d M Y H:i:s T', time() + 60 * 60 * 24));
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/maintenance.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/common/maintenance.tpl';
 		} else {
