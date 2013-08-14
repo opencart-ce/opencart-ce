@@ -347,7 +347,7 @@ class ControllerAffiliateRegister extends Controller {
 			$this->error['firstname'] = $this->language->get('error_firstname');
 		}
 
-		if ((!isset($this->request->post['lastname']) || utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
+		if (!isset($this->request->post['lastname']) || (utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
 			$this->error['lastname'] = $this->language->get('error_lastname');
 		}
 
