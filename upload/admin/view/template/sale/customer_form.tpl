@@ -168,7 +168,10 @@
               </tr>
               <tr>
                 <td><span id="postcode-required<?php echo $address_row; ?>" class="required">*</span> <?php echo $entry_postcode; ?></td>
-                <td><input type="text" name="address[<?php echo $address_row; ?>][postcode]" value="<?php echo $address['postcode']; ?>" /></td>
+                <td><input type="text" name="address[<?php echo $address_row; ?>][postcode]" value="<?php echo $address['postcode']; ?>" />
+                  <?php if (isset($error_address_postcode[$address_row])) { ?>
+                  <span class="error"><?php echo $error_address_postcode[$address_row]; ?></span>
+                  <?php } ?></td>
               </tr>
               <tr>
                 <td><span class="required">*</span> <?php echo $entry_country; ?></td>
