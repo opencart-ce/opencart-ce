@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title'] = 'Your Order Has Been Processed!';
+$_['heading_title']          = 'Your Order Has Been Processed!';
 $_['heading_title_customer'] = 'Your Order #%s Has Been Processed!';
 
 // Text
