@@ -46,7 +46,7 @@ class ControllerPaymentLiqPay extends Controller {
 		if ($signature == $this->request->post['signature']) {
 			$this->load->model('checkout/order');
 
-			$this->model_checkout_order->confirm($order_id, $this->config->get('config_order_status_id'));
+			$this->model_checkout_order->confirm($order_id, $this->config->get('liqpay_order_status_id'));
 		}
 	}
 }
