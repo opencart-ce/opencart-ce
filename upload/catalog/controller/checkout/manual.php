@@ -295,14 +295,6 @@ class ControllerCheckoutManual extends Controller {
 					$json['error']['shipping']['zone'] = $this->language->get('error_zone');
 				}
 
-				$this->load->model('localisation/country');
-
-				$country_info = $this->model_localisation_country->getCountry($this->request->post['shipping_country_id']);
-
-				if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['shipping_postcode']) < 2) || (utf8_strlen($this->request->post['shipping_postcode']) > 10)) {
-					$json['error']['shipping']['postcode'] = $this->language->get('error_postcode');
-				}
-
 				if (!isset($json['error']['shipping'])) {
 					if ($country_info) {
 						$country = $country_info['name'];
@@ -470,6 +462,14 @@ class ControllerCheckoutManual extends Controller {
 			array_multisort($sort_order, SORT_ASC, $json['order_total']);
 
 			// Payment
+			$this->load->model('localisation/country');
+
+			$country_info = $this->model_localisation_country->getCountry($this->request->post['payment_country_id']);
+
+			if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['payment_postcode']) < 2) || (utf8_strlen($this->request->post['payment_postcode']) > 10)) {
+				$json['error']['payment']['postcode'] = $this->language->get('error_postcode');
+			}
+
 			if ($this->request->post['payment_country_id'] == '') {
 				$json['error']['payment']['country'] = $this->language->get('error_country');
 			}
