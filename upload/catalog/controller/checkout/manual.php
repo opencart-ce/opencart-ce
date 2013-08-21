@@ -279,8 +279,6 @@ class ControllerCheckoutManual extends Controller {
 			$json['shipping_method'] = array();
 
 			if ($this->cart->hasShipping()) {
-				$this->load->model('localisation/country');
-
 				$country_info = $this->model_localisation_country->getCountry($this->request->post['shipping_country_id']);
 
 				if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['shipping_postcode']) < 2) || (utf8_strlen($this->request->post['shipping_postcode']) > 10)) {
@@ -462,8 +460,6 @@ class ControllerCheckoutManual extends Controller {
 			array_multisort($sort_order, SORT_ASC, $json['order_total']);
 
 			// Payment
-			$this->load->model('localisation/country');
-
 			$country_info = $this->model_localisation_country->getCountry($this->request->post['payment_country_id']);
 
 			if ($country_info && $country_info['postcode_required'] && (utf8_strlen($this->request->post['payment_postcode']) < 2) || (utf8_strlen($this->request->post['payment_postcode']) > 10)) {
