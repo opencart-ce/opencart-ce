@@ -1180,8 +1180,6 @@ class ControllerSettingSetting extends Controller {
 	public function template() {
 		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
 			$server = HTTPS_CATALOG;
-		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
-			$server = HTTPS_CATALOG;
 		} else {
 			$server = HTTP_CATALOG;
 		}

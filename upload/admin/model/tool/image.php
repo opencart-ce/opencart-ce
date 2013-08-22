@@ -32,8 +32,6 @@ class ModelToolImage extends Model {
 
 		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
 			return HTTPS_CATALOG . 'image/' . $new_image;
-		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
-			return HTTPS_CATALOG . 'image/' . $new_image;
 		} else {
 			return HTTP_CATALOG . 'image/' . $new_image;
 		}

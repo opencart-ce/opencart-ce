@@ -30,8 +30,6 @@ class ControllerErrorNotFound extends Controller {
 
 			if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
 				$connection = 'SSL';
-			} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
-				$connection = 'SSL';
 			} else {
 				$connection = 'NONSSL';
 			}
