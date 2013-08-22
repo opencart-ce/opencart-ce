@@ -7,6 +7,8 @@ class ControllerModuleGoogleTalk extends Controller {
 
 		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
 			$this->data['code'] = str_replace('http', 'https', html_entity_decode($this->config->get('google_talk_code')));
+		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
+			$this->data['code'] = str_replace('http', 'https', html_entity_decode($this->config->get('google_talk_code')));
 		} else {
 			$this->data['code'] = html_entity_decode($this->config->get('google_talk_code'));
 		}
