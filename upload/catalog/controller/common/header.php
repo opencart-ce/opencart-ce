@@ -5,8 +5,6 @@ class ControllerCommonHeader extends Controller {
 
 		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
 			$server = $this->config->get('config_ssl');
-		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
-			$server = $this->config->get('config_ssl');
 		} else {
 			$server = $this->config->get('config_url');
 		}
