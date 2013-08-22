@@ -16,15 +16,15 @@ class ControllerModuleFeatured extends Controller {
 		$products = explode(',', $this->config->get('featured_product'));
 
 		if (empty($setting['limit'])) {
-			$setting['limit'] = 5;
+			$limit = 5;
+		} else {
+			$limit = $setting['limit'];
 		}
-
-		$products = array_slice($products, 0, (int)$setting['limit']);
 
 		foreach ($products as $product_id) {
 			$product_info = $this->model_catalog_product->getProduct($product_id);
 
-			if ($product_info) {
+			if ($product_info && $limit) {
 				if ($product_info['image']) {
 					$image = $this->model_tool_image->resize($product_info['image'], $setting['image_width'], $setting['image_height']);
 				} else {
@@ -59,6 +59,8 @@ class ControllerModuleFeatured extends Controller {
 					'reviews'    => sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
 					'href'       => $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
 				);
+
+				$limit--;
 			}
 		}
 
