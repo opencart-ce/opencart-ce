@@ -61,7 +61,7 @@ class ControllerPaymentAuthorizeNetAim extends Controller {
 		$data['x_tran_key'] = $this->config->get('authorizenet_aim_key');
 		$data['x_version'] = '3.1';
 		$data['x_delim_data'] = 'true';
-		$data['x_delim_char'] = ',';
+		$data['x_delim_char'] = '|';
 		$data['x_encap_char'] = '"';
 		$data['x_relay_response'] = 'false';
 		$data['x_first_name'] = html_entity_decode($order_info['payment_firstname'], ENT_QUOTES, 'UTF-8');
@@ -136,7 +136,7 @@ class ControllerPaymentAuthorizeNetAim extends Controller {
 
 			$response_info = array();
 
-			$results = explode(',', $response);
+			$results = explode('|', $response);
 
 			foreach ($results as $result) {
 				$response_info[$i] = trim($result, '"');
