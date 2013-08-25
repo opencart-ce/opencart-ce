@@ -506,7 +506,7 @@ class ControllerCatalogDownload extends Controller {
 
 		if (!isset($json['error'])) {
 			if (is_uploaded_file($this->request->files['file']['tmp_name']) && file_exists($this->request->files['file']['tmp_name'])) {
-				$ext = md5(mt_rand());
+				$ext = hash_rand('md5');
 
 				$json['filename'] = $filename . '.' . $ext;
 				$json['mask'] = $filename;

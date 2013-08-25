@@ -693,7 +693,7 @@ class ControllerProductProduct extends Controller {
 		}
 
 		if (!$json && is_uploaded_file($this->request->files['file']['tmp_name']) && file_exists($this->request->files['file']['tmp_name'])) {
-			$file = basename($filename) . '.' . md5(mt_rand());
+			$file = basename($filename) . '.' . hash_rand('md5');
 
 			// Hide the uploaded file name so people can not link to it directly.
 			$json['file'] = $this->encryption->encrypt($file);

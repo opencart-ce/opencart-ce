@@ -2321,7 +2321,7 @@ class ControllerSaleOrder extends Controller {
 
 			if (!isset($json['error'])) {
 				if (is_uploaded_file($this->request->files['file']['tmp_name']) && file_exists($this->request->files['file']['tmp_name'])) {
-					$file = basename($filename) . '.' . md5(mt_rand());
+					$file = basename($filename) . '.' . hash_rand('md5');
 
 					$json['file'] = $file;
 

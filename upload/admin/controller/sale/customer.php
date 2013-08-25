@@ -1064,7 +1064,7 @@ class ControllerSaleCustomer extends Controller {
 		$customer_info = $this->model_sale_customer->getCustomer($customer_id);
 
 		if ($customer_info) {
-			$token = md5(mt_rand());
+			$token = hash_rand('md5');
 
 			$this->model_sale_customer->editToken($customer_id, $token);
 
