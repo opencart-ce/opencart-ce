@@ -16,7 +16,7 @@ class ControllerCommonForgotten extends Controller {
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->language->load('mail/forgotten');
 
-			$code = sha1(uniqid(mt_rand(), true));
+			$code = hash_rand('sha1');
 
 			$this->model_user_user->editCode($this->request->post['email'], $code);
 
