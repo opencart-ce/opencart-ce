@@ -1079,9 +1079,9 @@ class ControllerSaleCustomer extends Controller {
 			$store_info = $this->model_setting_store->getStore($store_id);
 
 			if ($store_info) {
-				$this->redirect($store_info['url'] . 'index.php?route=account/login&token=' . $token);
+				$this->redirect(($this->config->get('config_secure') ? $store_info['ssl'] : $store_info['url']) . 'index.php?route=account/login&token=' . $token);
 			} else {
-				$this->redirect(HTTP_CATALOG . 'index.php?route=account/login&token=' . $token);
+				$this->redirect(($this->config->get('config_secure') ? HTTPS_CATALOG : HTTP_CATALOG) . 'index.php?route=account/login&token=' . $token);
 			}
 		} else {
 			$this->language->load('error/not_found');
