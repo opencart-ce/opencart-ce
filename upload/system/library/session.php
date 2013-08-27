@@ -14,5 +14,9 @@ class Session {
 
 		$this->data =& $_SESSION;
 	}
+
+	public function regenerateId() {
+		session_regenerate_id(true);
+	}
 }
 ?>
