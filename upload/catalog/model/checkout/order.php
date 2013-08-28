@@ -655,7 +655,7 @@ class ModelCheckoutOrder extends Model {
 
 				if ($order_info['customer_id']) {
 					$message .= $language->get('text_update_link') . "\n";
-					$message .= $store_url . 'index.php?route=account/order/info&order_id=' . $order_id . "\n\n";
+					$message .= ($this->config->get('config_secure') ? str_replace('http://', 'https://', $order_info['store_url']) : $order_info['store_url']) . 'index.php?route=account/order/info&order_id=' . $order_id . "\n\n";
 				}
 
 				if ($comment) {
