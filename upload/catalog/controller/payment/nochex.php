@@ -11,29 +11,29 @@ class ControllerPaymentNochex extends Controller {
 
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
-        $this->data['action'] = 'https://secure.nochex.com/';
+		$this->data['action'] = 'https://secure.nochex.com/';
 
-        // Nochex minimum requirements
-        // The merchant ID is usually your Nochex registered email address but can be altered for "Merchant" accounts see below
+		// Nochex minimum requirements
+		// The merchant ID is usually your Nochex registered email address but can be altered for "Merchant" accounts see below
 		if ($this->config->get('nochex_email') != $this->config->get('nochex_merchant')){ // This MUST be changed on your Nochex account!!!!
-            $this->data['merchant_id'] = $this->config->get('nochex_merchant');
-        } else {
+			$this->data['merchant_id'] = $this->config->get('nochex_merchant');
+		} else {
 			$this->data['merchant_id'] = $this->config->get('nochex_email');
 		}
 
-        $this->data['amount'] = $this->currency->format($order_info['total'], 'GBP', false, false);
-        $this->data['order_id'] = $this->session->data['order_id'];
-        $this->data['description'] = $this->config->get('config_name');
+		$this->data['amount'] = $this->currency->format($order_info['total'], 'GBP', false, false);
+		$this->data['order_id'] = $this->session->data['order_id'];
+		$this->data['description'] = $this->config->get('config_name');
 
 		$this->data['billing_fullname'] = $order_info['payment_firstname'] . ' ' . $order_info['payment_lastname'];
 
 		if ($order_info['payment_address_2']) {
-            $this->data['billing_address']  = $order_info['payment_address_1'] . "\r\n" . $order_info['payment_address_2'] . "\r\n" . $order_info['payment_city'] . "\r\n" . $order_info['payment_zone'] . "\r\n";
-        } else {
-            $this->data['billing_address']  = $order_info['payment_address_1'] . "\r\n" . $order_info['payment_city'] . "\r\n" . $order_info['payment_zone'] . "\r\n";
-        }
+			$this->data['billing_address']  = $order_info['payment_address_1'] . "\r\n" . $order_info['payment_address_2'] . "\r\n" . $order_info['payment_city'] . "\r\n" . $order_info['payment_zone'] . "\r\n";
+		} else {
+			$this->data['billing_address']  = $order_info['payment_address_1'] . "\r\n" . $order_info['payment_city'] . "\r\n" . $order_info['payment_zone'] . "\r\n";
+		}
 
-        $this->data['billing_postcode'] = $order_info['payment_postcode'];
+		$this->data['billing_postcode'] = $order_info['payment_postcode'];
 
 		if ($this->cart->hasShipping()) {
 			$this->data['delivery_fullname'] = $order_info['shipping_firstname'] . ' ' . $order_info['shipping_lastname'];
@@ -57,13 +57,13 @@ class ControllerPaymentNochex extends Controller {
 			$this->data['delivery_postcode'] = $order_info['payment_postcode'];
 		}
 
-        $this->data['email_address'] = $order_info['email'];
-        $this->data['customer_phone_number']= $order_info['telephone'];
+		$this->data['email_address'] = $order_info['email'];
+		$this->data['customer_phone_number']= $order_info['telephone'];
 		$this->data['test'] = $this->config->get('nochex_test');
-        $this->data['success_url'] = $this->url->link('checkout/success', '', 'SSL');
-        $this->data['cancel_url'] = $this->url->link('checkout/payment', '', 'SSL');
-        $this->data['declined_url'] = $this->url->link('payment/nochex/callback', 'method=decline', 'SSL');
-        $this->data['callback_url'] = $this->url->link('payment/nochex/callback', 'order=' . $this->session->data['order_id'], 'SSL');
+		$this->data['success_url'] = $this->url->link('checkout/success', '', 'SSL');
+		$this->data['cancel_url'] = $this->url->link('checkout/checkout', '', 'SSL');
+		$this->data['declined_url'] = $this->url->link('payment/nochex/callback', 'method=decline', 'SSL');
+		$this->data['callback_url'] = $this->url->link('payment/nochex/callback', 'order=' . $this->session->data['order_id'], 'SSL');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/nochex.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/nochex.tpl';
