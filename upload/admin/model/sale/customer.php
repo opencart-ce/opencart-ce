@@ -457,7 +457,7 @@ class ModelSaleCustomer extends Model {
 			}
 
 			$subject = sprintf($this->language->get('text_reward_subject'), $store_name);
-			$reward_received  = sprintf($this->language->get('text_reward_received'), $points) . "\n\n";
+			$reward_received = sprintf($this->language->get('text_reward_received'), $points) . "\n\n";
 			$reward_total = sprintf($this->language->get('text_reward_total'), $this->getRewardTotal($customer_id));
 
 			// Contact Email Language
@@ -469,7 +469,7 @@ class ModelSaleCustomer extends Model {
 					$language->load('mail/customer');
 
 					$subject = sprintf($language->get('text_reward_subject'), $store_name);
-					$reward_received  = sprintf($language->get('text_reward_received'), $points) . "\n\n";
+					$reward_received = sprintf($language->get('text_reward_received'), $points) . "\n\n";
 					$reward_total = sprintf($language->get('text_reward_total'), $this->getRewardTotal($customer_id));
 				}
 			}
