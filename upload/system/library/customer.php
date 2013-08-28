@@ -51,6 +51,8 @@ class Customer {
 		}
 
 		if ($customer_query->num_rows) {
+			$this->session->data['login_token'] = hash_rand('md5');
+
 			// Regenerate session id
 			$this->session->regenerateId();
 
