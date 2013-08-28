@@ -456,8 +456,26 @@ class ModelSaleCustomer extends Model {
 				$store_name = $this->config->get('config_name');
 			}
 
-			$message  = sprintf($this->language->get('text_reward_received'), $points) . "\n\n";
-			$message .= sprintf($this->language->get('text_reward_total'), $this->getRewardTotal($customer_id));
+			$subject = sprintf($this->language->get('text_reward_subject'), $store_name);
+			$reward_received  = sprintf($this->language->get('text_reward_received'), $points) . "\n\n";
+			$reward_total = sprintf($this->language->get('text_reward_total'), $this->getRewardTotal($customer_id));
+
+			// Contact Email Language
+			if ($order_id) {
+				$language_query = $this->db->query("SELECT o.language_id, l.code, l.directory FROM `" . DB_PREFIX . "order` o LEFT JOIN `" . DB_PREFIX . "language` l ON (o.language_id = l.language_id) WHERE o.order_id = '" . (int)$order_id . "' AND l.status = '1'");
+
+				if ($language_query->num_rows && $language_query->row['code'] != $this->config->get('config_admin_language')) {
+					$language = new Language($language_query->row['directory']);
+					$language->load('mail/customer');
+
+					$subject = sprintf($language->get('text_reward_subject'), $store_name);
+					$reward_received  = sprintf($language->get('text_reward_received'), $points) . "\n\n";
+					$reward_total = sprintf($language->get('text_reward_total'), $this->getRewardTotal($customer_id));
+				}
+			}
+
+			$message  = $reward_received;
+			$message .= $reward_total;
 
 			$mail = new Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
@@ -470,7 +488,7 @@ class ModelSaleCustomer extends Model {
 			$mail->setTo($customer_info['email']);
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender($store_name);
-			$mail->setSubject(html_entity_decode(sprintf($this->language->get('text_reward_subject'), $store_name), ENT_QUOTES, 'UTF-8'));
+			$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
 			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
 			$mail->send();
 		}
