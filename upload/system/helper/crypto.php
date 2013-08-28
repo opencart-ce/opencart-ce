@@ -92,7 +92,7 @@ function hash_rand($algo = 'md5', $len = 12) {
 	 * No build-in crypto randomness function found. We collect any entropy 
 	 * available in the PHP core PRNGs along with some filesystem info and memory
 	 * stats. To make this data cryptographically strong we add data either from 
-	 * /dev/urandom or if its unavailable, we gather entropy by measuring the 
+	 * /dev/urandom or if it's unavailable, we gather entropy by measuring the 
 	 * time needed to compute a number of SHA-1 hashes. 
 	 */
 	$str = '';
