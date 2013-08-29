@@ -37,6 +37,9 @@ class Affiliate {
 		$affiliate_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "affiliate WHERE LOWER(email) = '" . $this->db->escape(utf8_strtolower($email)) . "' AND (password = SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape($password) . "'))))) OR password = '" . $this->db->escape(md5($password)) . "') AND status = '1' AND approved = '1'");
 
 		if ($affiliate_query->num_rows) {
+			// Regenerate session id
+			$this->session->regenerateId();
+
 			$this->session->data['affiliate_id'] = $affiliate_query->row['affiliate_id'];
 
 			$this->affiliate_id = $affiliate_query->row['affiliate_id'];
