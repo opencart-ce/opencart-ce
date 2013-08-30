@@ -29,7 +29,7 @@ class ControllerModuleAccount extends Controller {
 		$this->data['edit'] = $this->url->link('account/edit', '', 'SSL');
 		$this->data['password'] = $this->url->link('account/password', '', 'SSL');
 		$this->data['address'] = $this->url->link('account/address', '', 'SSL');
-		$this->data['wishlist'] = $this->url->link('account/wishlist');
+		$this->data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
 		$this->data['order'] = $this->url->link('account/order', '', 'SSL');
 		$this->data['download'] = $this->url->link('account/download', '', 'SSL');
 		$this->data['return'] = $this->url->link('account/return', '', 'SSL');
