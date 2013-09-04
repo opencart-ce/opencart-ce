@@ -70,6 +70,7 @@ class Affiliate {
 
 	public function logout() {
 		unset($this->session->data['affiliate_id']);
+		unset($this->session->data['affiliate_cookie']);
 
 		$this->affiliate_id = '';
 		$this->firstname = '';
