@@ -35,5 +35,13 @@ class Request {
 
 		return $data;
 	}
+
+	public function isSecure() {
+		if (isset($this->server['HTTPS']) && (($this->server['HTTPS'] == 'on') || ($this->server['HTTPS'] == '1'))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 ?>
