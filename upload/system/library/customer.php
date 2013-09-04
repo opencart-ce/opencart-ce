@@ -51,6 +51,18 @@ class Customer {
 		}
 
 		if ($customer_query->num_rows) {
+			// Create customer login cookie if HTTPS
+			if ($this->config->get('config_secure')) {
+				if ($this->request->isSecure()) {
+					// Create a cookie and restrict it to HTTPS pages
+					$this->session->data['customer_cookie'] = hash_rand('md5');
+
+					setcookie('customer', $this->session->data['customer_cookie'], 0, '/', '', true, true);
+				} else {
+					return false;
+				}
+			}
+
 			$this->session->data['login_token'] = hash_rand('md5');
 
 			// Regenerate session id
@@ -168,6 +180,14 @@ class Customer {
 		$query = $this->db->query("SELECT SUM(points) AS total FROM " . DB_PREFIX . "customer_reward WHERE customer_id = '" . (int)$this->customer_id . "'");
 
 		return $query->row['total'];
+	}
+
+	public function isSecure() {
+		if (!$this->config->get('config_secure') || ($this->request->isSecure() && isset($this->request->cookie['customer']) && isset($this->session->data['customer_cookie']) && $this->request->cookie['customer'] == $this->session->data['customer_cookie'])) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 ?>
