@@ -63,8 +63,6 @@ class Customer {
 				}
 			}
 
-			$this->session->data['login_token'] = hash_rand('md5');
-
 			// Regenerate session id
 			$this->session->regenerateId();
 
