@@ -7,6 +7,14 @@ class ControllerAffiliateAccount extends Controller {
 			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
 		}
 
+		if (!$this->affiliate->isSecure()) {
+			$this->customer->logout();
+
+			$this->session->data['redirect'] = $this->url->link('affiliate/account', '', 'SSL');
+
+			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
+		}
+
 		$this->language->load('affiliate/account');
 
 		$this->data['breadcrumbs'] = array();

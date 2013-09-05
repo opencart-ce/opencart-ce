@@ -9,6 +9,14 @@ class ControllerAccountReturn extends Controller {
 			$this->redirect($this->url->link('account/login', '', 'SSL'));
 		}
 
+		if (!$this->customer->isSecure()) {
+			$this->customer->logout();
+
+			$this->session->data['redirect'] = $this->url->link('account/return', '', 'SSL');
+
+			$this->redirect($this->url->link('account/login', '', 'SSL'));
+		}
+
 		$this->language->load('account/return');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -115,6 +123,14 @@ class ControllerAccountReturn extends Controller {
 		}
 
 		if (!$this->customer->isLogged()) {
+			$this->session->data['redirect'] = $this->url->link('account/return/info', 'return_id=' . $return_id, 'SSL');
+
+			$this->redirect($this->url->link('account/login', '', 'SSL'));
+		}
+
+		if (!$this->customer->isSecure()) {
+			$this->customer->logout();
+
 			$this->session->data['redirect'] = $this->url->link('account/return/info', 'return_id=' . $return_id, 'SSL');
 
 			$this->redirect($this->url->link('account/login', '', 'SSL'));

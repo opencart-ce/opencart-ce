@@ -7,6 +7,14 @@ class ControllerAffiliateTransaction extends Controller {
 			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
 		}
 
+		if (!$this->affiliate->isSecure()) {
+			$this->customer->logout();
+
+			$this->session->data['redirect'] = $this->url->link('affiliate/transaction', '', 'SSL');
+
+			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
+		}
+
 		$this->language->load('affiliate/transaction');
 
 		$this->document->setTitle($this->language->get('heading_title'));
