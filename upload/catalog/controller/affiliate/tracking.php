@@ -7,6 +7,15 @@ class ControllerAffiliateTracking extends Controller {
 			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
 		}
 
+
+		if (!$this->affiliate->isSecure()) {
+			$this->customer->logout();
+
+			$this->session->data['redirect'] = $this->url->link('affiliate/tracking', '', 'SSL');
+
+			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
+		}
+
 		$this->language->load('affiliate/tracking');
 
 		$this->document->setTitle($this->language->get('heading_title'));

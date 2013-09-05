@@ -7,6 +7,14 @@ class ControllerAccountDownload extends Controller {
 			$this->redirect($this->url->link('account/login', '', 'SSL'));
 		}
 
+		if (!$this->customer->isSecure() || $this->customer->loginExpired()) {
+			$this->customer->logout();
+
+			$this->session->data['redirect'] = $this->url->link('account/download', '', 'SSL');
+
+			$this->redirect($this->url->link('account/login', '', 'SSL'));
+		}
+
 		$this->language->load('account/download');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -148,6 +156,14 @@ class ControllerAccountDownload extends Controller {
 
 	public function download() {
 		if (!$this->customer->isLogged()) {
+			$this->session->data['redirect'] = $this->url->link('account/download', '', 'SSL');
+
+			$this->redirect($this->url->link('account/login', '', 'SSL'));
+		}
+
+		if (!$this->customer->isSecure() || $this->customer->loginExpired()) {
+			$this->customer->logout();
+
 			$this->session->data['redirect'] = $this->url->link('account/download', '', 'SSL');
 
 			$this->redirect($this->url->link('account/login', '', 'SSL'));

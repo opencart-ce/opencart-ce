@@ -7,11 +7,29 @@ class ControllerAccountNewsletter extends Controller {
 			$this->redirect($this->url->link('account/login', '', 'SSL'));
 		}
 
+		if (!$this->customer->isSecure()) {
+			$this->customer->logout();
+
+			$this->session->data['redirect'] = $this->url->link('account/newsletter', '', 'SSL');
+
+			$this->redirect($this->url->link('account/login', '', 'SSL'));
+		}
+
 		$this->language->load('account/newsletter');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+			if (!isset($this->request->get['customer_token']) || !isset($this->session->data['customer_token']) || $this->request->get['customer_token'] != $this->session->data['customer_token']) {
+				$this->customer->logout();
+
+				$this->session->data['redirect'] = $this->url->link('account/newsletter', '', 'SSL');
+
+				$this->redirect($this->url->link('account/login', '', 'SSL'));
+			}
+
+			$this->customer->setToken();
+
 			$this->load->model('account/customer');
 
 			$this->model_account_customer->editNewsletter($this->request->post['newsletter']);
@@ -51,7 +69,7 @@ class ControllerAccountNewsletter extends Controller {
 		$this->data['button_continue'] = $this->language->get('button_continue');
 		$this->data['button_back'] = $this->language->get('button_back');
 
-		$this->data['action'] = $this->url->link('account/newsletter', '', 'SSL');
+		$this->data['action'] = $this->url->link('account/newsletter', 'customer_token=' . $this->session->data['customer_token'], 'SSL');
 
 		$this->data['newsletter'] = $this->customer->getNewsletter();
 
