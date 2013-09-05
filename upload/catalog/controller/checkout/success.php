@@ -65,7 +65,7 @@ class ControllerCheckoutSuccess extends Controller {
 
 		if ($this->customer->isLogged()) {
 			if ($order_id) {
-				$this->data['text_message'] = sprintf($this->language->get('text_customer'), $this->url->link('account/order/info&order_id=' . $order_id, '', 'SSL'), $order_id, $this->url->link('account/account', '', 'SSL'), $this->url->link('account/order', '', 'SSL'), $this->url->link('account/download', '', 'SSL'), $this->url->link('information/contact'));
+				$this->data['text_message'] = sprintf($this->language->get('text_customer'), $this->url->link('account/order/info', 'order_id=' . $order_id, 'SSL'), $order_id, $this->url->link('account/account', '', 'SSL'), $this->url->link('account/order', '', 'SSL'), $this->url->link('account/download', '', 'SSL'), $this->url->link('information/contact'));
 			} else {
 				$this->data['text_message'] = sprintf($this->language->get('text_customer'), $this->url->link('account/order', '', 'SSL'), $order_id, $this->url->link('account/account', '', 'SSL'), $this->url->link('account/order', '', 'SSL'), $this->url->link('account/download', '', 'SSL'), $this->url->link('information/contact'));
 			}
