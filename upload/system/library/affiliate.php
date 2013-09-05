@@ -52,7 +52,11 @@ class Affiliate {
 			// Regenerate session id
 			$this->session->regenerateId();
 
+			// Token used to protect account functions against CSRF
+			$this->setToken();
+
 			$this->session->data['affiliate_id'] = $affiliate_query->row['affiliate_id'];
+			$this->session->data['affiliate_login_time'] = time();
 
 			$this->affiliate_id = $affiliate_query->row['affiliate_id'];
 			$this->firstname = $affiliate_query->row['firstname'];
@@ -71,6 +75,8 @@ class Affiliate {
 	public function logout() {
 		unset($this->session->data['affiliate_id']);
 		unset($this->session->data['affiliate_cookie']);
+		unset($this->session->data['affiliate_token']);
+		unset($this->session->data['affiliate_login_time']);
 
 		$this->affiliate_id = '';
 		$this->firstname = '';
@@ -117,6 +123,18 @@ class Affiliate {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	public function setToken() {
+		$this->session->data['affiliate_token'] = hash_rand('md5');
+	}
+
+	public function loginExpired($age = 900) {
+		if (isset($this->session->data['affiliate_login_time']) && (time() - $this->session->data['affiliate_login_time'] < $age)) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 }
