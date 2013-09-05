@@ -2678,7 +2678,6 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (74, 0, 'config', 'config_cart_weight', '1', 0),
 (75, 0, 'config', 'config_upload_allowed', 'jpg, JPG, jpeg, gif, png, txt', 0),
 (76, 0, 'config', 'config_review_status', '1', 0),
-(77, 0, 'config', 'config_download', '1', 0),
 (78, 0, 'config', 'config_return_status_id', '2', 0),
 (79, 0, 'config', 'config_complete_status_id', '5', 0),
 (80, 0, 'config', 'config_order_status_id', '1', 0),
