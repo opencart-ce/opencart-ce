@@ -66,7 +66,11 @@ class Customer {
 			// Regenerate session id
 			$this->session->regenerateId();
 
+			// Token used to protect account functions against CSRF
+			$this->setToken();
+
 			$this->session->data['customer_id'] = $customer_query->row['customer_id'];
+			$this->session->data['customer_login_time'] = time();
 
 			if ($customer_query->row['cart'] && is_string($customer_query->row['cart'])) {
 				$cart = unserialize($customer_query->row['cart']);
@@ -117,6 +121,10 @@ class Customer {
 
 		unset($this->session->data['customer_id']);
 		unset($this->session->data['customer_cookie']);
+		unset($this->session->data['customer_token']);
+		unset($this->session->data['customer_login_time']);
+		unset($this->session->data['cart']);
+		unset($this->session->data['wishlist']);
 
 		$this->customer_id = '';
 		$this->firstname = '';
@@ -186,6 +194,18 @@ class Customer {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	public function setToken() {
+		$this->session->data['customer_token'] = hash_rand('md5');
+	}
+
+	public function loginExpired($age = 900) {
+		if (isset($this->session->data['customer_login_time']) && (time() - $this->session->data['customer_login_time'] < $age)) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 }

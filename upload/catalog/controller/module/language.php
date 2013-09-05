@@ -53,6 +53,10 @@ class ControllerModuleLanguage extends Controller {
 
 			unset($data['route']);
 
+			// Remove customer and affiliate anti-CSRF tokens
+			unset($data['customer_token']);
+			unset($data['affiliate_token']);
+
 			$url = '';
 
 			if ($data) {

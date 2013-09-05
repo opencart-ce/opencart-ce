@@ -9,18 +9,38 @@ class ControllerAffiliateEdit extends Controller {
 			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
 		}
 
+		if (!$this->affiliate->isSecure() || $this->affiliate->loginExpired()) {
+			$this->affiliate->logout();
+
+			$this->session->data['redirect'] = $this->url->link('affiliate/edit', '', 'SSL');
+
+			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
+		}
+
 		$this->language->load('affiliate/edit');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('affiliate/affiliate');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_affiliate_affiliate->editAffiliate($this->request->post);
+		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+			if (!isset($this->request->get['affiliate_token']) || !isset($this->session->data['affiliate_token']) || $this->request->get['affiliate_token'] != $this->session->data['affiliate_token']) {
+				$this->affiliate->logout();
 
-			$this->session->data['success'] = $this->language->get('text_success');
+				$this->session->data['redirect'] = $this->url->link('affiliate/edit', '', 'SSL');
 
-			$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
+				$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
+			}
+
+			$this->affiliate->setToken();
+
+			if ($this->validate()) {
+				$this->model_affiliate_affiliate->editAffiliate($this->request->post);
+
+				$this->session->data['success'] = $this->language->get('text_success');
+
+				$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
+			}
 		}
 
 		$this->data['breadcrumbs'] = array();
@@ -126,7 +146,7 @@ class ControllerAffiliateEdit extends Controller {
 			$this->data['error_zone'] = '';
 		}
 
-		$this->data['action'] = $this->url->link('affiliate/edit', '', 'SSL');
+		$this->data['action'] = $this->url->link('affiliate/edit', 'affiliate_token=' . $this->session->data['affiliate_token'], 'SSL');
 
 		if ($this->request->server['REQUEST_METHOD'] != 'POST') {
 			$affiliate_info = $this->model_affiliate_affiliate->getAffiliate($this->affiliate->getId());

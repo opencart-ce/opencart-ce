@@ -57,6 +57,10 @@ class ControllerModuleCurrency extends Controller {
 
 			unset($data['route']);
 
+			// Remove cutomer and affiliate anti-CSRF tokens
+			unset($data['customer_token']);
+			unset($data['affiliate_token']);
+
 			$url = '';
 
 			if ($data) {
