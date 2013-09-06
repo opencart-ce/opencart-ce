@@ -523,15 +523,19 @@
               </tr>
               <tr>
                 <td class="left"><?php echo $entry_coupon; ?></td>
-                <td class="left"><input type="text" name="coupon" value="" /></td>
+                <td class="left"><input type="text" name="coupon" value="<?php echo $coupon; ?>" /></td>
               </tr>
               <tr>
                 <td class="left"><?php echo $entry_voucher; ?></td>
-                <td class="left"><input type="text" name="voucher" value="" /></td>
+                <td class="left"><input type="text" name="voucher" value="<?php echo $voucher; ?>" />
+                  <input type="hidden" name="current_voucher" value="<?php echo $current_voucher; ?>" />
+                  <input type="hidden" name="current_voucher_value" value="<?php echo $current_voucher_value; ?>" /></td>
               </tr>
               <tr>
                 <td class="left"><?php echo $entry_reward; ?></td>
-                <td class="left"><input type="text" name="reward" value="" /></td>
+                <td class="left"><input type="text" name="reward" value="<?php echo $reward; ?>" />
+                  <input type="hidden" name="current_reward" value="<?php echo $current_reward; ?>" />
+                  <input type="hidden" name="current_credit" value="<?php echo $current_credit; ?>" /></td>
               </tr>
               <tr>
                 <td class="left"><?php echo $entry_order_status; ?></td>

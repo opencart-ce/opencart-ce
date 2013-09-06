@@ -1154,6 +1154,62 @@ class ControllerSaleOrder extends Controller {
 			$this->data['order_totals'] = array();
 		}
 
+		// Check current coupon, voucher, reward and credit
+		$current_coupon  = '';
+		$current_voucher = '';
+		$current_voucher_value = 0;
+		$current_reward  = '';
+		$current_credit  = '';
+		foreach ($this->data['order_totals'] as $key => $value) {
+			if ($value['code'] == 'coupon') {
+				$start = strpos($value['title'], '(') + 1;
+				$end = strrpos($value['title'], ')');
+
+				if ($start && $end) {
+					$current_coupon = substr($value['title'], $start, $end - $start);
+				}
+			} elseif ($value['code'] == 'voucher') {
+				$start = strpos($value['title'], '(') + 1;
+				$end = strrpos($value['title'], ')');
+
+				if ($start && $end) {
+					$current_voucher = substr($value['title'], $start, $end - $start);
+					$current_voucher_value = abs($value['value']);
+				}
+			} elseif ($value['code'] == 'reward') {
+				$start = strpos($value['title'], '(') + 1;
+				$end = strrpos($value['title'], ')');
+
+				if ($start && $end) {
+					$current_reward = substr($value['title'], $start, $end - $start);
+				}
+			} elseif ($value['code'] == 'credit') {
+				$current_credit = abs($value['value']);
+			}
+		}
+		$this->data['current_voucher'] = $current_voucher;
+		$this->data['current_voucher_value'] = $current_voucher_value;
+		$this->data['current_reward'] = $current_reward;
+		$this->data['current_credit'] = $current_credit;
+
+		if (isset($this->request->post['coupon'])) {
+			$this->data['coupon'] = $this->request->post['coupon'];
+		} else {
+			$this->data['coupon'] = $current_coupon;
+		}
+
+		if (isset($this->request->post['voucher'])) {
+			$this->data['voucher'] = $this->request->post['voucher'];
+		} else {
+			$this->data['voucher'] = $current_voucher;
+		}
+
+		if (isset($this->request->post['reward'])) {
+			$this->data['reward'] = $this->request->post['reward'];
+		} else {
+			$this->data['reward'] = $current_reward;
+		}
+
 		$this->template = 'sale/order_form.tpl';
 		$this->children = array(
 			'common/header',
