@@ -131,10 +131,10 @@ class Affiliate {
 	}
 
 	public function loginExpired($age = 900) {
-		if (!isset($this->session->data['affiliate_login_time']) || (time() - $this->session->data['affiliate_login_time'] > $age)) {
-			return true;
-		} else {
+		if (isset($this->session->data['affiliate_login_time']) && (time() - $this->session->data['affiliate_login_time'] < $age)) {
 			return false;
+		} else {
+			return true;
 		}
 	}
 }
