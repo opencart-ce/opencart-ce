@@ -37,15 +37,6 @@
 DD_belatedPNG.fix('#logo img');
 </script>
 <![endif]-->
-<?php if ($stores) { ?>
-<script type="text/javascript"><!--
-$(document).ready(function() {
-<?php foreach ($stores as $store) { ?>
-$('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></iframe>');
-<?php } ?>
-});
-//--></script>
-<?php } ?>
 <?php echo $google_analytics; ?>
 </head>
 <body>

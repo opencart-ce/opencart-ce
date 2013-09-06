@@ -50,35 +50,8 @@ class ControllerCommonHeader extends Controller {
 		$this->data['shopping_cart'] = $this->url->link('checkout/cart');
 		$this->data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
 
-		// Daniel's robot detector
-		$status = true;
-
-		if (isset($this->request->server['HTTP_USER_AGENT'])) {
-			$robots = explode("\n", str_replace(array("\r\n", "\r"), "\n", trim($this->config->get('config_robots'))));
-
-			foreach ($robots as $robot) {
-				if ($robot && strpos($this->request->server['HTTP_USER_AGENT'], trim($robot)) !== false) {
-					$status = false;
-
-					break;
-				}
-			}
-		}
-
-		// A dirty hack to try to set a cookie for the multi-store feature
-		$this->load->model('setting/store');
-
+		// Legacy code for removed session sharing. Prevents errors in custom templates.
 		$this->data['stores'] = array();
-
-		if ($this->config->get('config_shared') && $status) {
-			$this->data['stores'][] = $server . 'catalog/view/javascript/crossdomain.php?session_id=' . $this->session->getId();
-
-			$stores = $this->model_setting_store->getStores();
-
-			foreach ($stores as $store) {
-				$this->data['stores'][] = $store['url'] . 'catalog/view/javascript/crossdomain.php?session_id=' . $this->session->getId();
-			}
-		}
 
 		// Search
 		if (isset($this->request->get['search'])) {
