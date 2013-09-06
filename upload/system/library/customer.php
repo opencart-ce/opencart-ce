@@ -202,10 +202,10 @@ class Customer {
 	}
 
 	public function loginExpired($age = 900) {
-		if (isset($this->session->data['customer_login_time']) && (time() - $this->session->data['customer_login_time'] < $age)) {
-			return false;
-		} else {
+		if (!isset($this->session->data['customer_login_time']) || (time() - $this->session->data['customer_login_time'] > $age)) {
 			return true;
+		} else {
+			return false;
 		}
 	}
 }
