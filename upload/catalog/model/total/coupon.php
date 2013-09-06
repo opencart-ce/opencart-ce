@@ -6,7 +6,7 @@ class ModelTotalCoupon extends Model {
 
 			$this->load->model('checkout/coupon');
 
-			$coupon_info = $this->model_checkout_coupon->getCoupon($this->session->data['coupon']);
+			$coupon_info = $this->model_checkout_coupon->getCoupon($this->session->data['coupon'], isset($this->session->data['manual']) ? false : true);
 
 			if ($coupon_info) {
 				$discount_total = 0;

@@ -22,6 +22,10 @@ class ControllerCheckoutManual extends Controller {
 			unset($this->session->data['reward']);
 			unset($this->session->data['voucher']);
 			unset($this->session->data['vouchers']);
+			unset($this->session->data['current_voucher']);
+			unset($this->session->data['current_voucher_value']);
+			unset($this->session->data['current_reward']);
+			unset($this->session->data['current_credit']);
 
 			// Settings
 			$this->load->model('setting/setting');
@@ -379,7 +383,7 @@ class ControllerCheckoutManual extends Controller {
 			if (!empty($this->request->post['coupon'])) {
 				$this->load->model('checkout/coupon');
 
-				$coupon_info = $this->model_checkout_coupon->getCoupon($this->request->post['coupon']);
+				$coupon_info = $this->model_checkout_coupon->getCoupon($this->request->post['coupon'], false);
 
 				if ($coupon_info) {
 					$this->session->data['coupon'] = $this->request->post['coupon'];
@@ -394,7 +398,10 @@ class ControllerCheckoutManual extends Controller {
 
 				$voucher_info = $this->model_checkout_voucher->getVoucher($this->request->post['voucher']);
 
-				if ($voucher_info) {
+				if ($this->request->post['voucher'] == $this->request->post['current_voucher']) {
+					$this->session->data['current_voucher_value'] = $this->request->post['current_voucher_value'];
+					$this->session->data['voucher'] = $this->request->post['voucher'];
+				} elseif ($voucher_info) {
 					$this->session->data['voucher'] = $this->request->post['voucher'];
 				} else {
 					$json['error']['voucher'] = $this->language->get('error_voucher');
@@ -402,8 +409,14 @@ class ControllerCheckoutManual extends Controller {
 			}
 
 			// Reward Points
+			if (!empty($this->request->post['current_reward'])) {
+				$this->session->data['current_reward'] = $this->request->post['current_reward'];
+			}
 			if (!empty($this->request->post['reward'])) {
 				$points = $this->customer->getRewardPoints();
+				if (!empty($this->request->post['current_reward'])) {
+					$points += $this->request->post['current_reward'];
+				}
 
 				if ($this->request->post['reward'] > $points) {
 					$json['error']['reward'] = sprintf($this->language->get('error_points'), $this->request->post['reward']);
@@ -427,6 +440,14 @@ class ControllerCheckoutManual extends Controller {
 					}
 				}
 			}
+
+			// Credit
+			if (!empty($this->request->post['current_credit'])) {
+				$this->session->data['current_credit'] = $this->request->post['current_credit'];
+			}
+
+			// Manual order totals
+			$this->session->data['manual'] = true;
 
 			// Totals
 			$json['order_total'] = array();
@@ -570,6 +591,10 @@ class ControllerCheckoutManual extends Controller {
 			unset($this->session->data['reward']);
 			unset($this->session->data['voucher']);
 			unset($this->session->data['vouchers']);
+			unset($this->session->data['current_voucher']);
+			unset($this->session->data['current_voucher_value']);
+			unset($this->session->data['current_reward']);
+			unset($this->session->data['current_credit']);
 		} else {
 			$json['error']['warning'] = $this->language->get('error_permission');
 		}

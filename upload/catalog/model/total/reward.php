@@ -6,7 +6,13 @@ class ModelTotalReward extends Model {
 
 			$points = $this->customer->getRewardPoints();
 
+			if (!empty($this->session->data['current_reward'])) {
+				$points += $this->session->data['current_reward'];
+			}
+
 			if ($this->session->data['reward'] <= $points) {
+				$points = $this->session->data['reward'];
+
 				$discount_total = 0;
 
 				$points_total = 0;
@@ -23,7 +29,7 @@ class ModelTotalReward extends Model {
 					$discount = 0;
 
 					if ($product['points']) {
-						$discount = $product['total'] * ($this->session->data['reward'] / $points_total);
+						$discount = $product['total'] * ($points / $points_total);
 
 						if ($product['tax_class_id']) {
 							$tax_rates = $this->tax->getRates($product['total'] - ($product['total'] - $discount), $product['tax_class_id']);
@@ -41,7 +47,7 @@ class ModelTotalReward extends Model {
 
 				$total_data[] = array(
 					'code'       => 'reward',
-					'title'      => sprintf($this->language->get('text_reward'), $this->session->data['reward']),
+					'title'      => sprintf($this->language->get('text_reward'), $points),
 					'text'       => $this->currency->format(-$discount_total),
 					'value'      => -$discount_total,
 					'sort_order' => $this->config->get('reward_sort_order')

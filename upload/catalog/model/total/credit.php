@@ -1,10 +1,15 @@
 <?php
 class ModelTotalCredit extends Model {
 	public function getTotal(&$total_data, &$total, &$taxes) {
-		if ($this->config->get('credit_status')) {
+		$current_credit = 0;
+		if (isset($this->session->data['current_credit'])) {
+			$current_credit += abs($this->session->data['current_credit']);
+		}
+
+		if ($this->config->get('credit_status') || $current_credit) {
 			$this->language->load('total/credit');
 
-			$balance = $this->customer->getBalance();
+			$balance = $current_credit + $this->customer->getBalance();
 
 			if ((float)$balance) {
 				if ($balance > $total) {
