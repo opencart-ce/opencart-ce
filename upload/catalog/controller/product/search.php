@@ -408,6 +408,14 @@ class ControllerProductSearch extends Controller {
 				'href'  => $this->url->link('product/search', $url . '&limit=100')
 			);
 
+			$sort_order = array();
+
+			foreach ($this->data['limits'] as $key => $value) {
+				$sort_order[$key] = $value['value'];
+			}
+
+			array_multisort($sort_order, SORT_ASC, $this->data['limits']);
+
 			$url = '';
 
 			if (isset($this->request->get['filter_name'])) {
