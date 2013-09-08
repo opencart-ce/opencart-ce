@@ -7,6 +7,10 @@ class ControllerAffiliateRegister extends Controller {
 			$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
 		}
 
+		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
+			$this->redirect($this->url->link('affiliate/register', '', 'SSL'), 301);
+		}
+
 		$this->language->load('affiliate/register');
 
 		$this->document->setTitle($this->language->get('heading_title'));

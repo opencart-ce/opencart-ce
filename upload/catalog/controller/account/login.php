@@ -3,6 +3,10 @@ class ControllerAccountLogin extends Controller {
 	private $error = array();
 
 	public function index() {
+		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
+			$this->redirect($this->url->link('account/login', '', 'SSL'), 301);
+		}
+
 		$this->load->model('account/customer');
 
 		// Login override for admin users

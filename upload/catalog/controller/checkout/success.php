@@ -1,6 +1,10 @@
 <?php
 class ControllerCheckoutSuccess extends Controller {
 	public function index() {
+		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
+			$this->redirect($this->url->link('checkout/success', '', 'SSL'), 301);
+		}
+
 		if (isset($this->session->data['order_id'])) {
 			$this->cart->clear();
 
