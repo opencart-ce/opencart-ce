@@ -753,7 +753,7 @@ INSERT INTO `oc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `add
 (219, 'Uganda', 'UG', 'UGA', '', 0, 1),
 (220, 'Ukraine', 'UA', 'UKR', '', 0, 1),
 (221, 'United Arab Emirates', 'AE', 'ARE', '', 0, 1),
-(222, 'United Kingdom', 'GB', 'GBR', '', 1, 1),
+(222, 'United Kingdom', 'GB', 'GBR', '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}\r\n{zone}\r\n{postcode}\r\n{country}', 1, 1),
 (223, 'United States', 'US', 'USA', '{firstname} {lastname}\r\n{company}\r\n{address_1}\r\n{address_2}\r\n{city}, {zone} {postcode}\r\n{country}', 1, 1),
 (224, 'United States Minor Outlying Islands', 'UM', 'UMI', '', 0, 1),
 (225, 'Uruguay', 'UY', 'URY', '', 0, 1),
