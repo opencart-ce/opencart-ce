@@ -119,11 +119,12 @@ class Customer {
 	public function logout() {
 		$this->db->query("UPDATE " . DB_PREFIX . "customer SET cart = '" . $this->db->escape(isset($this->session->data['cart']) ? serialize($this->session->data['cart']) : '') . "', wishlist = '" . $this->db->escape(isset($this->session->data['wishlist']) ? serialize($this->session->data['wishlist']) : '') . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 
+		$this->session->data['cart'] = array();
+
 		unset($this->session->data['customer_id']);
 		unset($this->session->data['customer_cookie']);
 		unset($this->session->data['customer_token']);
 		unset($this->session->data['customer_login_time']);
-		unset($this->session->data['cart']);
 		unset($this->session->data['wishlist']);
 
 		$this->customer_id = '';
