@@ -53,7 +53,7 @@ $_['entry_dropoff_type']                       = 'Drop Off Type:';
 $_['entry_packaging_type']                     = 'Packaging Type:';
 $_['entry_rate_type']                          = 'Rate Type:';
 $_['entry_display_time']                       = 'Display Delivery Time:<br /><span class="help">Do you want to display the shipping time? (e.g. Ships within 3 to 5 days)</span>';
-$_['entry_display_weight']                     = 'Display Delivery Weight:<br /><span class="help">Do you want to display the shipping weight? (e.g. Delivery Weight : 2.7674 Kg\'s)</span>';
+$_['entry_display_weight']                     = 'Display Delivery Weight:<br /><span class="help">Do you want to display the shipping weight? (e.g. Delivery Weight: 2.7674kg)</span>';
 $_['entry_weight_class']                       = 'Weight Class:<span class="help">Set to kilograms or pounds.</span>';
 $_['entry_tax_class']                          = 'Tax Class:';
 $_['entry_geo_zone']                           = 'Geo Zone:';
