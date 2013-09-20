@@ -311,6 +311,10 @@ class ControllerAccountReturn extends Controller {
 	}
 
 	public function insert() {
+		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
+			$this->redirect($this->url->link('account/return/insert', '', 'SSL'), 301);
+		}
+
 		$this->language->load('account/return');
 
 		$this->load->model('account/return');
@@ -561,6 +565,10 @@ class ControllerAccountReturn extends Controller {
 	}
 
 	public function success() {
+		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
+			$this->redirect($this->url->link('account/return/success', '', 'SSL'));
+		}
+
 		$this->language->load('account/return');
 
 		$this->document->setTitle($this->language->get('heading_title'));

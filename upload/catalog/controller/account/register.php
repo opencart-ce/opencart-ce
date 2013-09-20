@@ -7,6 +7,10 @@ class ControllerAccountRegister extends Controller {
 			$this->redirect($this->url->link('account/account', '', 'SSL'));
 		}
 
+		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
+			$this->redirect($this->url->link('account/register', '', 'SSL'), 301);
+		}
+
 		$this->language->load('account/register');
 
 		$this->document->setTitle($this->language->get('heading_title'));

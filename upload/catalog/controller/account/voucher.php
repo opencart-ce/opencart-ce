@@ -3,6 +3,10 @@ class ControllerAccountVoucher extends Controller {
 	private $error = array();
 
 	public function index() {
+		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
+			$this->redirect($this->url->link('account/voucher', '', 'SSL'), 301);
+		}
+
 		$this->language->load('account/voucher');
 
 		$this->document->setTitle($this->language->get('heading_title'));
