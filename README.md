@@ -21,4 +21,3 @@ The repo is set to initially include OpenCart 1.5.5.x and 1.5.4.x with possible 
  9. If applicable submit a bug report or fix to the [opencart/opencart core](https://github.com/opencart/opencart).
  10. Only submit code that you have the rights to or that is released under GPL.  Code from commercial mods or mods not explicitly released under GPL is prohibited.
  11. Pull requests and bug reports that are closed without action will include a statement why.  Feel free to advocate for re-opening the issue but please note the decision may not be reversed.  Remember, closing an issue is not meant as a personal attack against you.  It's about what's best for the project.
- 12. Preferred spelling in code is British English (e.g. localisation, cheque).
