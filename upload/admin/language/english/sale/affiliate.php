@@ -40,7 +40,7 @@ $_['entry_postcode']            = 'Postcode:';
 $_['entry_country']             = 'Country:';
 $_['entry_zone']                = 'Region / State:';
 $_['entry_code']                = 'Tracking Code:<span class="help">The tracking code that will be used to track referrals.</span>';
-$_['entry_commission']          = 'Commission (%):<span class="help">Percentage the affiliate recieves on each order.</span>';
+$_['entry_commission']          = 'Commission (%):<span class="help">Percentage the affiliate receives on each order.</span>';
 $_['entry_tax']                 = 'Tax ID:';
 $_['entry_payment']             = 'Payment Method:';
 $_['entry_cheque']              = 'Cheque Payee Name:';

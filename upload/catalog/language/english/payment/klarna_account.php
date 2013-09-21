@@ -22,7 +22,7 @@ $_['entry_dob']            = 'Date of Birth:';
 $_['entry_phone_no']       = 'Phone number:<br /><span class="help">Please enter your phone number.</span>';
 $_['entry_street']         = 'Street:<br /><span class="help">Please note that delivery can only take place to the registered address when paying with Klarna.</span>';
 $_['entry_house_no']       = 'House No.:<br /><span class="help">Please enter your house number.</span>';
-$_['entry_house_ext']      = 'House Ext.:<br /><span class="help">Please submit your house extension here. E.g. A, B, C, Red, Blue ect.</span>';
+$_['entry_house_ext']      = 'House Ext.:<br /><span class="help">Please submit your house extension here. E.g. A, B, C, Red, Blue etc.</span>';
 $_['entry_company']        = 'Company Registration Number:<br /><span class="help">Please enter your Company\'s registration number</span>';
 
 // Error

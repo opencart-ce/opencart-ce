@@ -9,7 +9,7 @@ $_['text_twocheckout']   = '<a href="https://www.2checkout.com/2co/affiliate?aff
 
 // Entry
 $_['entry_account']      = '2Checkout Account ID:';
-$_['entry_secret']       = 'Secret Word:<br /><span class="help">The secret word to confirm transactions with (must be the same as defined on the merchat account configuration page).</span>';
+$_['entry_secret']       = 'Secret Word:<br /><span class="help">The secret word to confirm transactions with (must be the same as defined on the merchant account configuration page).</span>';
 $_['entry_test']         = 'Test Mode:';
 $_['entry_total']        = 'Total:<br /><span class="help">The checkout total the order must reach before this payment method becomes active.</span>';
 $_['entry_order_status'] = 'Order Status:';

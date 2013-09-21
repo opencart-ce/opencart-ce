@@ -73,7 +73,7 @@ $_['text_ip_city']                            = 'IP City:<br /><span class="help
 $_['text_ip_latitude']                        = 'IP Latitude:<br /><span class="help">Estimated Latitude of the IP address.</span>';
 $_['text_ip_longitude']                       = 'IP Longitude:<br /><span class="help">Estimated Longitude of the IP address.</span>';
 $_['text_ip_isp']                             = 'ISP:<br /><span class="help">ISP of the IP address.</span>';
-$_['text_ip_org']                             = 'IP Organization:<br /><span class="help">Organization of the IP addres.</span>';
+$_['text_ip_org']                             = 'IP Organization:<br /><span class="help">Organization of the IP address.</span>';
 $_['text_ip_asnum']                           = 'ASNUM:<br /><span class="help">Estimated Autonomous System Number of the IP address.</span>';
 $_['text_ip_user_type']                       = 'IP User Type:<br /><span class="help">Estimated user type of the IP address.</span>';
 $_['text_ip_country_confidence']              = 'IP Country Confidence:<br /><span class="help">Representing our confidence that the country location is correct.</span>';
@@ -100,9 +100,9 @@ $_['text_high_risk_username']                 = 'High Risk Username:<br /><span 
 $_['text_high_risk_password']                 = 'High Risk Password:<br /><span class="help">Whether passwordMD5 input is in database of high risk passwords. Only returned if passwordMD5 is included in inputs.</span>';
 $_['text_bin_match']                          = 'Bin Match:<br /><span class="help">Whether country of issuing bank based on BIN number matches billing address country.</span>';
 $_['text_bin_country']                        = 'Bin Country:<br /><span class="help">Country Code of the bank which issued the credit card based on BIN number.</span>';
-$_['text_bin_name_match']                     = 'Bin Name Match:<br /><span class="help">Whether name of issuing bank matches inputted  BIN name. A return value of Yes provides a positive indication that cardholder is in possession of credit card.</span>';
+$_['text_bin_name_match']                     = 'Bin Name Match:<br /><span class="help">Whether name of issuing bank matches inputted BIN name. A return value of Yes provides a positive indication that cardholder is in possession of credit card.</span>';
 $_['text_bin_name']                           = 'Bin Name:<br /><span class="help">Name of the bank which issued the credit card based on BIN number. Available for approximately 96% of BIN numbers.</span>';
-$_['text_bin_phone_match']                    = 'Bin Phone Match:<br /><span class="help">Whether customer service phone number matches inputed BIN Phone. A return value of Yes provides a positive indication that cardholder is in possession of credit card.</span>';
+$_['text_bin_phone_match']                    = 'Bin Phone Match:<br /><span class="help">Whether customer service phone number matches inputted BIN Phone. A return value of Yes provides a positive indication that cardholder is in possession of credit card.</span>';
 $_['text_bin_phone']                          = 'Bin Phone:<br /><span class="help">Customer service phone number listed on back of credit card. Available for approximately 75% of BIN numbers. In some cases phone number returned may be outdated.</span>';
 $_['text_customer_phone_in_billing_location'] = 'Customer Phone Number in Billing Location:<br /><span class="help">Whether the customer phone number is in the billing zip code. A return value of Yes provides a positive indication that the phone number listed belongs to the cardholder. A return value of No indicates that the phone number may be in a different area, or may not be listed in our database. NotFound is returned when the phone number prefix cannot be found in our database at all. Currently we only support US Phone numbers.</span>';
 $_['text_ship_forward']                       = 'Shipping Forward:<br /><span class="help">Whether shipping address is in database of known mail drops.</span>';
