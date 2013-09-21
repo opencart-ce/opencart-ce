@@ -146,7 +146,6 @@ class ModelCatalogOption extends Model {
 
 		$option_value_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "option_value WHERE option_id = '" . (int)$option_id . "' ORDER BY sort_order");
 
-
 		foreach ($option_value_query->rows as $option_value) {
 			$option_value_description_data = array();
 
