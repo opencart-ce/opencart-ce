@@ -1620,7 +1620,7 @@ class ControllerSaleOrder extends Controller {
 			$this->data['payment_method'] = $order_info['payment_method'];
 			$this->data['total'] = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value']);
 
-			if ($order_info['total'] < 0) {
+			if ($order_info['total'] > 0) {
 				$this->data['credit'] = $order_info['total'];
 			} else {
 				$this->data['credit'] = 0;
