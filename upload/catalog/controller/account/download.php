@@ -73,14 +73,14 @@ class ControllerAccountDownload extends Controller {
 
 					$suffix = array(
 						'B',
-						'KB',
-						'MB',
-						'GB',
-						'TB',
-						'PB',
-						'EB',
-						'ZB',
-						'YB'
+						'KiB',
+						'MiB',
+						'GiB',
+						'TiB',
+						'PiB',
+						'EiB',
+						'ZiB',
+						'YiB'
 					);
 
 					while (($size / 1024) > 1) {
