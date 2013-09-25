@@ -18,7 +18,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['direction'] = $this->language->get('direction');
 		$this->data['google_analytics'] = html_entity_decode($this->config->get('config_google_analytics'), ENT_QUOTES, 'UTF-8');
 
-		// Whos Online
+		// Who's Online
 		if ($this->config->get('config_customer_online')) {
 			$this->load->model('tool/online');
 
