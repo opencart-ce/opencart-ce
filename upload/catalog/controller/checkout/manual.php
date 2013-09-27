@@ -447,6 +447,9 @@ class ControllerCheckoutManual extends Controller {
 			// Manual order totals
 			$this->session->data['manual'] = true;
 
+			// Save payment code to session. Klama fee total needs this.
+			$this->session->data['payment_method']['code'] = isset($this->request->post['payment_code']) ? $this->request->post['payment_code'] : '';
+
 			// Totals
 			$json['order_total'] = array();
 			$total = 0;
