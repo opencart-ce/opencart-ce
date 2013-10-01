@@ -27,6 +27,9 @@ class ControllerCheckoutManual extends Controller {
 			unset($this->session->data['current_reward']);
 			unset($this->session->data['current_credit']);
 
+			// Manual order flag
+			$this->session->data['manual'] = true;
+
 			// Settings
 			$this->load->model('setting/setting');
 
@@ -58,25 +61,21 @@ class ControllerCheckoutManual extends Controller {
 
 			if (isset($this->request->post['order_product'])) {
 				foreach ($this->request->post['order_product'] as $order_product) {
-					$product_info = $this->model_catalog_product->getProduct($order_product['product_id']);
+					$option_data = array();
 
-					if ($product_info) {
-						$option_data = array();
-
-						if (isset($order_product['order_option'])) {
-							foreach ($order_product['order_option'] as $option) {
-								if ($option['type'] == 'select' || $option['type'] == 'radio' || $option['type'] == 'image') {
-									$option_data[$option['product_option_id']] = $option['product_option_value_id'];
-								} elseif ($option['type'] == 'checkbox') {
-									$option_data[$option['product_option_id']][] = $option['product_option_value_id'];
-								} elseif ($option['type'] == 'text' || $option['type'] == 'textarea' || $option['type'] == 'file' || $option['type'] == 'date' || $option['type'] == 'datetime' || $option['type'] == 'time') {
-									$option_data[$option['product_option_id']] = $option['value'];
-								}
+					if (isset($order_product['order_option'])) {
+						foreach ($order_product['order_option'] as $option) {
+							if ($option['type'] == 'select' || $option['type'] == 'radio' || $option['type'] == 'image') {
+								$option_data[$option['product_option_id']] = $option['product_option_value_id'];
+							} elseif ($option['type'] == 'checkbox') {
+								$option_data[$option['product_option_id']][] = $option['product_option_value_id'];
+							} elseif ($option['type'] == 'text' || $option['type'] == 'textarea' || $option['type'] == 'file' || $option['type'] == 'date' || $option['type'] == 'datetime' || $option['type'] == 'time') {
+								$option_data[$option['product_option_id']] = $option['value'];
 							}
 						}
-
-						$this->cart->add($order_product['product_id'], $order_product['quantity'], $option_data);
 					}
+
+					$this->cart->add($order_product['product_id'], $order_product['quantity'], $option_data);
 				}
 			}
 
@@ -444,9 +443,6 @@ class ControllerCheckoutManual extends Controller {
 				$this->session->data['current_credit'] = $this->request->post['current_credit'];
 			}
 
-			// Manual order totals
-			$this->session->data['manual'] = true;
-
 			// Save payment code to session. Klama fee total needs this.
 			$this->session->data['payment_method']['code'] = isset($this->request->post['payment_code']) ? $this->request->post['payment_code'] : '';
 
@@ -596,6 +592,7 @@ class ControllerCheckoutManual extends Controller {
 			unset($this->session->data['current_voucher_value']);
 			unset($this->session->data['current_reward']);
 			unset($this->session->data['current_credit']);
+			unset($this->session->data['manual']);
 		} else {
 			$json['error']['warning'] = $this->language->get('error_permission');
 		}
