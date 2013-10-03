@@ -1,7 +1,7 @@
 <?php
 class ModelPaymentKlarnaAccount extends Model {
-    public function getMethod($address, $total) {
-        $this->language->load('payment/klarna_account');
+	public function getMethod($address, $total) {
+		$this->language->load('payment/klarna_account');
 
 		$status = true;
 
@@ -178,36 +178,36 @@ class ModelPaymentKlarnaAccount extends Model {
 			);
 		}
 
-        return $method;
-    }
+		return $method;
+	}
 
-    private function getLowestPaymentAccount($country) {
-        switch ($country) {
-            case 'SWE':
-                $amount = 50.0;
-                break;
-            case 'NOR':
-                $amount = 95.0;
-                break;
-            case 'FIN':
-                $amount = 8.95;
-                break;
-            case 'DNK':
-                $amount = 89.0;
-                break;
-            case 'DEU':
-            case 'NLD':
-                $amount = 6.95;
-                break;
-            default:
-                $log = new Log('klarna_account.log');
-                $log->write('Unknown country ' . $country);
+	private function getLowestPaymentAccount($country) {
+		switch ($country) {
+			case 'SWE':
+				$amount = 50.0;
+				break;
+			case 'NOR':
+				$amount = 95.0;
+				break;
+			case 'FIN':
+				$amount = 8.95;
+				break;
+			case 'DNK':
+				$amount = 89.0;
+				break;
+			case 'DEU':
+			case 'NLD':
+				$amount = 6.95;
+				break;
+			default:
+				$log = new Log('klarna_account.log');
+				$log->write('Unknown country ' . $country);
 
 				$amount = NULL;
-                break;
-        }
+				break;
+		}
 
-        return $amount;
-    }
+		return $amount;
+	}
 }
 ?>

@@ -7,7 +7,6 @@ class ControllerAffiliateTracking extends Controller {
 			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
 		}
 
-
 		if (!$this->affiliate->isSecure()) {
 			$this->customer->logout();
 
