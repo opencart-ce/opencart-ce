@@ -140,7 +140,7 @@ class ControllerProductCategory extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $category_info['name'],
-				'href'      => $this->url->link('product/category', 'path=' . $this->request->get['path']),
+				'href'      => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -191,6 +191,10 @@ class ControllerProductCategory extends Controller {
 					'name'  => $result['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),
 					'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url)
 				);
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$this->data['products'] = array();

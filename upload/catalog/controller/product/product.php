@@ -16,6 +16,20 @@ class ControllerProductProduct extends Controller {
 		$this->load->model('catalog/category');
 
 		if (isset($this->request->get['path'])) {
+			$url = '';
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['limit'])) {
+				$url .= '&limit=' . $this->request->get['limit'];
+			}
+
 			$path = '';
 
 			$parts = explode('_', (string)$this->request->get['path']);
@@ -34,7 +48,7 @@ class ControllerProductProduct extends Controller {
 				if ($category_info) {
 					$this->data['breadcrumbs'][] = array(
 						'text'      => $category_info['name'],
-						'href'      => $this->url->link('product/category', 'path=' . $path),
+						'href'      => $this->url->link('product/category', 'path=' . $path . $url),
 						'separator' => $this->language->get('text_separator')
 					);
 				}
@@ -64,7 +78,7 @@ class ControllerProductProduct extends Controller {
 
 				$this->data['breadcrumbs'][] = array(
 					'text'      => $category_info['name'],
-					'href'      => $this->url->link('product/category', 'path=' . $this->request->get['path']),
+					'href'      => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url),
 					'separator' => $this->language->get('text_separator')
 				);
 			}
