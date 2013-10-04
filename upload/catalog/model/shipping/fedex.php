@@ -108,7 +108,7 @@ class ModelShippingFedex extends Model {
 
 			$xml .= '						<ns1:PostalCode>' . $address['postcode'] . '</ns1:PostalCode>';
 			$xml .= '						<ns1:CountryCode>' . $address['iso_code_2'] . '</ns1:CountryCode>';
-			$xml .= '						<ns1:Residential>' . ($address['company'] ? 'true' : 'false') . '</ns1:Residential>';
+			$xml .= '						<ns1:Residential>' . ($address['company'] ? 'false' : 'true') . '</ns1:Residential>';
 			$xml .= '					</ns1:Address>';
 			$xml .= '				</ns1:Recipient>';
 			$xml .= '				<ns1:ShippingChargesPayment>';
