@@ -9,7 +9,7 @@ final class mMySQLi {
 			trigger_error('Error: Could not make a database link (' . $this->mysqli->connect_errno . ') ' . $this->mysqli->connect_error);
 		}
 
-		$this->mysqli->set_charset('utf-8');
+		$this->mysqli->set_charset('utf8');
 	}
 
 	public function query($sql) {
