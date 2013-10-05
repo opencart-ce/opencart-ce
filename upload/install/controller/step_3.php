@@ -134,6 +134,8 @@ class ControllerStep3 extends Controller {
 
 		if (isset($this->request->post['db_driver'])) {
 			$this->data['db_driver'] = $this->request->post['db_driver'];
+		} elseif (version_compare(phpversion(), '5.5', '>=')) {
+			$this->data['db_driver'] = 'mmysqli';
 		} else {
 			$this->data['db_driver'] = 'mysql';
 		}
@@ -223,6 +225,18 @@ class ControllerStep3 extends Controller {
 				}
 
 				mysql_close($connection);
+			}
+		}
+
+		if ($this->request->post['db_driver'] == 'mmysqli') {
+			if (!$connection = @mysqli_connect($this->request->post['db_host'], $this->request->post['db_user'], $this->request->post['db_password'])) {
+				$this->error['warning'] = 'Error: Could not connect to the database please make sure the database server, username and password is correct!';
+			} else {
+				if (!@mysqli_select_db($connection, $this->request->post['db_name'])) {
+					$this->error['warning'] = 'Error: Database does not exist!';
+				}
+
+				mysqli_close($connection);
 			}
 		}
 
