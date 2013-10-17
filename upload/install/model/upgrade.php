@@ -1,7 +1,7 @@
 <?php
 class ModelUpgrade extends Model {
 	public function mysql() {
-		// Upgrade script to opgrade opencart to the latest version.
+		// Upgrade script to upgrade opencart to the latest version.
 		// Oldest version supported is 1.3.2
 
 		// Load the sql file
@@ -327,7 +327,7 @@ class ModelUpgrade extends Model {
 		}
 
 		// Update the customer group table
-		if (in_array('name', $table_old_data[DB_PREFIX . 'customer_group'])) {
+		if (isset($table_old_data[DB_PREFIX . 'customer_group']) && in_array('name', $table_old_data[DB_PREFIX . 'customer_group'])) {
 			// Customer Group 'name' field moved to new customer_group_description table. Need to loop through and move over.
 			$customer_group_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "customer_group`");
 
@@ -343,9 +343,9 @@ class ModelUpgrade extends Model {
 		}
 
 		// Customer blacklist table rename to ban ip
-		if (isset($table_old_data[DB_PREFIX . 'customer_ip_blacklist']) && !isset($table_old_data[DB_PREFIX . 'customer_ip_ban'])) {
-			$this->db->query("RENAME TABLE `" . DB_PREFIX . "customer_ip_blacklist` TO `" . DB_PREFIX . "customer_ban_ip`");
-			$this->db->query("ALTER TABLE `" . DB_PREFIX . "customer_ban_ip` CHANGE `customer_ip_blacklist_id`  `customer_ban_ip_id` INT(11) NOT NULL AUTO_INCREMENT");
+		if (isset($table_old_data[DB_PREFIX . 'customer_ip_blacklist']) && !isset($table_old_data[DB_PREFIX . 'customer_ban_ip'])) {
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "customer_ban_ip` SELECT `customer_ip_blacklist_id` AS `customer_ban_ip_id`, ip FROM `" . DB_PREFIX . "customer_ip_blacklist`");
+			$this->db->query("DROP TABLE `" . DB_PREFIX . "customer_ip_blacklist`");
 		}
 
 		// Sort the categories to take advantage of the nested set model
