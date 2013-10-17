@@ -111,9 +111,6 @@ CKEDITOR.replace('description-<?php echo $module_row; ?>-<?php echo $language['l
 	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
 	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
 	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserImageUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-	filebrowserFlashUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
 });
 <?php } ?>
 <?php $module_row++; ?>
@@ -180,9 +177,6 @@ function addModule() {
 		filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
 		filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
 		filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-		filebrowserUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-		filebrowserImageUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
-		filebrowserFlashUploadUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
 	});
 	<?php } ?>
 

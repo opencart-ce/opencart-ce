@@ -270,7 +270,7 @@ $(document).ready(function() {
 	});
 
 	$('#column-right a').live('dblclick', function() {
-		<?php if ($fckeditor) { ?>
+		<?php if ($fckeditor !== false) { ?>
 		window.opener.CKEDITOR.tools.callFunction(<?php echo $fckeditor; ?>, '<?php echo $directory; ?>' + $(this).find('input[name=\'image\']').attr('value'));
 
 		self.close();
