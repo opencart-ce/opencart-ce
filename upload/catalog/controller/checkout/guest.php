@@ -239,10 +239,12 @@ class ControllerCheckoutGuest extends Controller {
 				}
 
 				// VAT Validation
-				$this->load->helper('vat');
+				if ($customer_group && $customer_group['tax_id_display']) {
+					$this->load->helper('vat');
 
-				if ($this->config->get('config_vat') && $this->request->post['tax_id'] && (vat_validation($country_info['iso_code_2'], $this->request->post['tax_id']) == 'invalid')) {
-					$json['error']['tax_id'] = $this->language->get('error_vat');
+					if ($this->config->get('config_vat') && $this->request->post['tax_id'] != '' && (vat_validation($country_info['iso_code_2'], $this->request->post['tax_id']) == 'invalid')) {
+						$json['error']['tax_id'] = $this->language->get('error_vat');
+					}
 				}
 			}
 

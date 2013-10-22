@@ -1266,10 +1266,16 @@ class ControllerSaleOrder extends Controller {
 			}
 
 			// VAT Validation
-			$this->load->helper('vat');
+			$this->load->model('sale/customer_group');
 
-			if ($this->config->get('config_vat') && $this->request->post['payment_tax_id'] && (vat_validation($country_info['iso_code_2'], $this->request->post['payment_tax_id']) == 'invalid')) {
-				$this->error['payment_tax_id'] = $this->language->get('error_vat');
+			$customer_group = $this->model_sale_customer_group->getCustomerGroup($this->request->post['customer_group_id']);
+
+			if ($customer_group && $customer_group['tax_id_display']) {
+				$this->load->helper('vat');
+
+				if ($this->config->get('config_vat') && $this->request->post['payment_tax_id'] != '' && (vat_validation($country_info['iso_code_2'], $this->request->post['payment_tax_id']) == 'invalid')) {
+					$this->error['payment_tax_id'] = $this->language->get('error_vat');
+				}
 			}
 		}
 
