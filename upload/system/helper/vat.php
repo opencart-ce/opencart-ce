@@ -8,9 +8,10 @@ function vat_validation($prefix, $number) {
 		'FI' => 'FI', //Finland
 		'FR' => 'FR', //France
 		'FX' => 'FR', //France métropolitaine
+		'MC' => 'FR', //Monaco
 		'DE' => 'DE', //Germany
 		'GR' => 'EL', //Greece
-		'IE' => 'IE', //Irland
+		'IE' => 'IE', //Ireland
 		'IT' => 'IT', //Italy
 		'LU' => 'LU', //Luxembourg
 		'NL' => 'NL', //Netherlands
@@ -18,6 +19,7 @@ function vat_validation($prefix, $number) {
 		'ES' => 'ES', //Spain
 		'SE' => 'SE', //Sweden
 		'GB' => 'GB', //United Kingdom
+		'IM' => 'GB', //Isle of Man
 		'CY' => 'CY', //Cyprus
 		'EE' => 'EE', //Estonia
 		'HU' => 'HU', //Hungary
@@ -28,11 +30,13 @@ function vat_validation($prefix, $number) {
 		'RO' => 'RO', //Romania
 		'SK' => 'SK', //Slovakia
 		'CZ' => 'CZ', //Czech Republic
-		'SI' => 'SI'  //Slovania
+		'SI' => 'SI'  //Slovenia
 	);
 
+	$number = str_replace(' ', '', $number);
+
 	if (array_search(substr($number, 0, 2), $iso_code_2_data)) {
-		$number = str_replace(' ','', substr($number, 2));
+		$number = substr($number, 2);
 	}
 
 	if (array_key_exists($prefix, $iso_code_2_data)) {
@@ -40,9 +44,7 @@ function vat_validation($prefix, $number) {
 
 		if (preg_match('/\bvalid VAT number\b/i', $response)) {
 			return 'valid';
-		}
-
-		if (preg_match('/\binvalid VAT number\b/i', $response)) {
+		} else {
 			return 'invalid';
 		}
 	} else {
