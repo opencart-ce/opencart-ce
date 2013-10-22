@@ -593,7 +593,7 @@ class ControllerAccountAddress extends Controller {
 			// VAT Validation
 			$this->load->helper('vat');
 
-			if ($this->config->get('config_vat') && !empty($this->request->post['tax_id']) && (vat_validation($country_info['iso_code_2'], $this->request->post['tax_id']) == 'invalid')) {
+			if ($this->config->get('config_vat') && isset($this->request->post['tax_id']) && $this->request->post['tax_id'] != '' && (vat_validation($country_info['iso_code_2'], $this->request->post['tax_id']) == 'invalid')) {
 				$this->error['tax_id'] = $this->language->get('error_vat');
 			}
 		}

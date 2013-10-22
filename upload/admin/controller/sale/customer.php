@@ -1010,10 +1010,22 @@ class ControllerSaleCustomer extends Controller {
 					}
 
 					// VAT Validation
-					$this->load->helper('vat');
+					$this->load->model('sale/customer_group');
 
-					if ($this->config->get('config_vat') && $value['tax_id'] && (vat_validation($country_info['iso_code_2'], $value['tax_id']) == 'invalid')) {
-						$this->error['address_tax_id'][$key] = $this->language->get('error_vat');
+					if (isset($this->request->post['customer_group_id']) && is_array($this->config->get('config_customer_group_display')) && in_array($this->request->post['customer_group_id'], $this->config->get('config_customer_group_display'))) {
+						$customer_group_id = $this->request->post['customer_group_id'];
+					} else {
+						$customer_group_id = $this->config->get('config_customer_group_id');
+					}
+
+					$customer_group = $this->model_sale_customer_group->getCustomerGroup($customer_group_id);
+
+					if ($customer_group && $customer_group['tax_id_display']) {
+						$this->load->helper('vat');
+
+						if ($this->config->get('config_vat') && $value['tax_id'] != '' && (vat_validation($country_info['iso_code_2'], $value['tax_id']) == 'invalid')) {
+							$this->error['address_tax_id'][$key] = $this->language->get('error_vat');
+						}
 					}
 				}
 
