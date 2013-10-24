@@ -428,6 +428,8 @@ function addAddress() {
 	$('#address-' + address_row).trigger('click');
 
 	address_row++;
+
+	$('select[name=\'customer_group_id\']').trigger('change');
 }
 //--></script>
 <script type="text/javascript"><!--
