@@ -65,43 +65,48 @@ class ControllerCommonHeader extends Controller {
 
 		$this->load->model('catalog/product');
 
-		$this->data['categories'] = array();
+		//load from cache
+		if (! $this->data['categories'] = $this->cache->get('top_menu_categories')) {
+			//missed ?, create it
+			$this->data['categories'] = array();
 
-		$categories = $this->model_catalog_category->getCategories(0);
+			$categories = $this->model_catalog_category->getCategories(0);
 
-		foreach ($categories as $category) {
-			if ($category['top']) {
-				// Level 2
-				$children_data = array();
+			foreach ($categories as $category) {
+				if ($category['top']) {
+					// Level 2
+					$children_data = array();
 
-				$children = $this->model_catalog_category->getCategories($category['category_id']);
+					$children = $this->model_catalog_category->getCategories($category['category_id']);
 
-				foreach ($children as $child) {
-					$data = array(
-						'filter_category_id'  => $child['category_id'],
-						'filter_sub_category' => true
-					);
+					foreach ($children as $child) {
+						$data = array(
+							'filter_category_id'  => $child['category_id'],
+							'filter_sub_category' => true
+						);
 
-					if ($this->config->get('config_product_count')) {
-						$product_total = $this->model_catalog_product->getTotalProducts($data);
-					} else {
-						$product_total = 0;
+						if ($this->config->get('config_product_count')) {
+							$product_total = $this->model_catalog_product->getTotalProducts($data);
+						} else {
+							$product_total = 0;
+						}
+
+						$children_data[] = array(
+							'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),
+							'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])
+						);
 					}
 
-					$children_data[] = array(
-						'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),
-						'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])
+					// Level 1
+					$this->data['categories'][] = array(
+						'name'     => $category['name'],
+						'children' => $children_data,
+						'column'   => $category['column'] ? $category['column'] : 1,
+						'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
 					);
 				}
-
-				// Level 1
-				$this->data['categories'][] = array(
-					'name'     => $category['name'],
-					'children' => $children_data,
-					'column'   => $category['column'] ? $category['column'] : 1,
-					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
-				);
 			}
+			$this->cache->set('top_menu_categories',$this->data['categories']);
 		}
 
 		$this->children = array(
