@@ -320,7 +320,9 @@ CREATE TABLE `oc_category` (
   `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`category_id`),
-  KEY `parent_id` (`parent_id`)
+  KEY `parent_id` (`parent_id`),
+  KEY `status` (`status`),
+  KEY 'sort_order' (`sort_order`),
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
