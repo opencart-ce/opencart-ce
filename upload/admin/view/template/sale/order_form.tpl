@@ -642,7 +642,7 @@ $('input[name=\'customer\']').catcomplete({
 	}
 });
 
-$('select[id=\'customer_group_id\']').live('change', function() {
+$('select[id=\'customer_group_id\']').bind('change', function() {
 	$('input[name=\'customer_group_id\']').attr('value', this.value);
 
 	var customer_group = [];
