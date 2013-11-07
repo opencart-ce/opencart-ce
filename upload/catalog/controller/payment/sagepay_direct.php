@@ -116,11 +116,11 @@ class ControllerPaymentSagepayDirect extends Controller {
 
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
-        $data = array();
+		$data = array();
 
 		$data['VPSProtocol'] = '2.23';
-        $data['ReferrerID'] = 'E511AF91-E4A0-42DE-80B0-09C981A3FB61';
-        $data['Vendor'] = $this->config->get('sagepay_direct_vendor');
+		$data['ReferrerID'] = 'E511AF91-E4A0-42DE-80B0-09C981A3FB61';
+		$data['Vendor'] = $this->config->get('sagepay_direct_vendor');
 		$data['VendorTxCode'] = $this->session->data['order_id'];
 		$data['Amount'] = $this->currency->format($order_info['total'], $order_info['currency_code'], 1.00000, false);
 		$data['Currency'] = $this->currency->getCode();
