@@ -128,14 +128,14 @@ class ControllerPaymentPPPro extends Controller {
 		$request .= '&COUNTRYCODE=' . urlencode($order_info['payment_iso_code_2']);
 		$request .= '&CURRENCYCODE=' . urlencode($order_info['currency_code']);
 
-        if ($this->cart->hasShipping()) {
+		if ($this->cart->hasShipping()) {
 			$request .= '&SHIPTONAME=' . urlencode($order_info['shipping_firstname'] . ' ' . $order_info['shipping_lastname']);
 			$request .= '&SHIPTOSTREET=' . urlencode($order_info['shipping_address_1']);
 			$request .= '&SHIPTOCITY=' . urlencode($order_info['shipping_city']);
 			$request .= '&SHIPTOSTATE=' . urlencode(($order_info['shipping_iso_code_2'] != 'US') ? $order_info['shipping_zone'] : $order_info['shipping_zone_code']);
 			$request .= '&SHIPTOCOUNTRYCODE=' . urlencode($order_info['shipping_iso_code_2']);
 			$request .= '&SHIPTOZIP=' . urlencode($order_info['shipping_postcode']);
-        } else {
+		} else {
 			$request .= '&SHIPTONAME=' . urlencode($order_info['payment_firstname'] . ' ' . $order_info['payment_lastname']);
 			$request .= '&SHIPTOSTREET=' . urlencode($order_info['payment_address_1']);
 			$request .= '&SHIPTOCITY=' . urlencode($order_info['payment_city']);
@@ -154,10 +154,10 @@ class ControllerPaymentPPPro extends Controller {
 		curl_setopt($curl, CURLOPT_HEADER, 0);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_FORBID_REUSE, 1);
-        curl_setopt($curl, CURLOPT_FRESH_CONNECT, 1);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
+		curl_setopt($curl, CURLOPT_FORBID_REUSE, 1);
+		curl_setopt($curl, CURLOPT_FRESH_CONNECT, 1);
+		curl_setopt($curl, CURLOPT_POST, 1);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
 
 		$response = curl_exec($curl);
 
@@ -195,7 +195,7 @@ class ControllerPaymentPPPro extends Controller {
 			$json['success'] = $this->url->link('checkout/success');
 		} else {
 			$json['error'] = $response_info['L_LONGMESSAGE0'];
-        }
+		}
 
 		$this->response->setOutput(json_encode($json));
 	}

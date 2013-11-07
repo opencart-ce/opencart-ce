@@ -88,7 +88,7 @@ final class Tax {
 		}
 	}
 
-    public function getRates($value, $tax_class_id) {
+	public function getRates($value, $tax_class_id) {
 		$tax_rates = array();
 
 		if ($this->customer->isLogged()) {

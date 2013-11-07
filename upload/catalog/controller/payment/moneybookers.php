@@ -13,26 +13,26 @@ class ControllerPaymentMoneybookers extends Controller {
 		$this->data['platform'] = '31974336';
 		$this->data['description'] = $this->config->get('config_name');
 		$this->data['transaction_id'] = $this->session->data['order_id'];
-        $this->data['return_url'] = $this->url->link('checkout/success');
+		$this->data['return_url'] = $this->url->link('checkout/success');
 		$this->data['cancel_url'] = $this->url->link('checkout/checkout', '', 'SSL');
 		$this->data['status_url'] = $this->url->link('payment/moneybookers/callback');
 		$this->data['language'] = $this->session->data['language'];
 		$this->data['logo'] = $this->config->get('config_url') . 'image/' . $this->config->get('config_logo');
 
-        $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
 		$this->data['pay_from_email'] = $order_info['email'];
 		$this->data['firstname'] = $order_info['payment_firstname'];
-        $this->data['lastname'] = $order_info['payment_lastname'];
-        $this->data['address'] = $order_info['payment_address_1'];
-        $this->data['address2'] = $order_info['payment_address_2'];
-        $this->data['phone_number'] = $order_info['telephone'];
+		$this->data['lastname'] = $order_info['payment_lastname'];
+		$this->data['address'] = $order_info['payment_address_1'];
+		$this->data['address2'] = $order_info['payment_address_2'];
+		$this->data['phone_number'] = $order_info['telephone'];
 		$this->data['postal_code'] = $order_info['payment_postcode'];
-        $this->data['city'] = $order_info['payment_city'];
-        $this->data['state'] = $order_info['payment_zone'];
+		$this->data['city'] = $order_info['payment_city'];
+		$this->data['state'] = $order_info['payment_zone'];
 		$this->data['country'] = $order_info['payment_iso_code_3'];
 		$this->data['amount'] = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false);
-        $this->data['currency'] = $order_info['currency_code'];
+		$this->data['currency'] = $order_info['currency_code'];
 
 		$products = '';
 

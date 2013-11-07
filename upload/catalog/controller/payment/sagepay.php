@@ -36,8 +36,8 @@ class ControllerPaymentSagepay extends Controller {
 		$data['VendorEMail'] = $this->config->get('config_email');
 
 		$data['BillingFirstnames'] = $order_info['payment_firstname'];
-        $data['BillingSurname'] = $order_info['payment_lastname'];
-        $data['BillingAddress1'] = $order_info['payment_address_1'];
+		$data['BillingSurname'] = $order_info['payment_lastname'];
+		$data['BillingAddress1'] = $order_info['payment_address_1'];
 
 		if ($order_info['payment_address_2']) {
 			$data['BillingAddress2'] = $order_info['payment_address_2'];
@@ -45,7 +45,7 @@ class ControllerPaymentSagepay extends Controller {
 
 		$data['BillingCity'] = $order_info['payment_city'];
 		$data['BillingPostCode'] = $order_info['payment_postcode'];
-        $data['BillingCountry'] = $order_info['payment_iso_code_2'];
+		$data['BillingCountry'] = $order_info['payment_iso_code_2'];
 
 		if ($order_info['payment_iso_code_2'] == 'US') {
 			$data['BillingState'] = $order_info['payment_zone_code'];

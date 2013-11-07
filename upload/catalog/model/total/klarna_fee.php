@@ -1,7 +1,7 @@
 <?php
 class ModelTotalKlarnaFee extends Model {
-    public function getTotal(&$total_data, &$total, &$taxes) {
-        $this->language->load('total/klarna_fee');
+	public function getTotal(&$total_data, &$total, &$taxes) {
+		$this->language->load('total/klarna_fee');
 
 		$status = true;
 
@@ -27,7 +27,7 @@ class ModelTotalKlarnaFee extends Model {
 			$status = false;
 		}
 
-        if ($status) {
+		if ($status) {
 			$total_data[] = array(
 				'code'       => 'klarna_fee',
 				'title'      => $this->language->get('text_klarna_fee'),
@@ -47,7 +47,7 @@ class ModelTotalKlarnaFee extends Model {
 			}
 
 			$total += $klarna_fee[$address['iso_code_3']]['fee'];
-        }
-    }
+		}
+	}
 }
 ?>

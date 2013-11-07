@@ -73,9 +73,9 @@ class ModelShippingFedex extends Model {
 			$xml .= '				<ns1:PackagingType>' . $this->config->get('fedex_packaging_type') . '</ns1:PackagingType>';
 			$xml .= '				<ns1:Shipper>';
 			$xml .= '					<ns1:Contact>';
-            $xml .= '						<ns1:PersonName>' . $this->config->get('config_owner') . '</ns1:PersonName>';
-            $xml .= '						<ns1:CompanyName>' . $this->config->get('config_name') . '</ns1:CompanyName>';
-            $xml .= '						<ns1:PhoneNumber>' . $this->config->get('config_telephone') . '</ns1:PhoneNumber>';
+			$xml .= '						<ns1:PersonName>' . $this->config->get('config_owner') . '</ns1:PersonName>';
+			$xml .= '						<ns1:CompanyName>' . $this->config->get('config_name') . '</ns1:CompanyName>';
+			$xml .= '						<ns1:PhoneNumber>' . $this->config->get('config_telephone') . '</ns1:PhoneNumber>';
 			$xml .= '					</ns1:Contact>';
 			$xml .= '					<ns1:Address>';
 
@@ -114,8 +114,8 @@ class ModelShippingFedex extends Model {
 			$xml .= '				<ns1:ShippingChargesPayment>';
 			$xml .= '					<ns1:PaymentType>SENDER</ns1:PaymentType>';
 			$xml .= '					<ns1:Payor>';
-            $xml .= '						<ns1:AccountNumber>' . $this->config->get('fedex_account') . '</ns1:AccountNumber>';
-            $xml .= '						<ns1:CountryCode>' . $country_info['iso_code_2'] . '</ns1:CountryCode>';
+			$xml .= '						<ns1:AccountNumber>' . $this->config->get('fedex_account') . '</ns1:AccountNumber>';
+			$xml .= '						<ns1:CountryCode>' . $country_info['iso_code_2'] . '</ns1:CountryCode>';
 			$xml .= '					</ns1:Payor>';
 			$xml .= '				</ns1:ShippingChargesPayment>';
 			$xml .= '				<ns1:RateRequestTypes>' . $this->config->get('fedex_rate_type') . '</ns1:RateRequestTypes>';

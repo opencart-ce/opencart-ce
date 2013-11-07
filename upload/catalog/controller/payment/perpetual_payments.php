@@ -89,10 +89,10 @@ class ControllerPaymentPerpetualPayments extends Controller {
 		curl_setopt($curl, CURLOPT_HEADER, 0);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_FORBID_REUSE, 1);
-        curl_setopt($curl, CURLOPT_FRESH_CONNECT, 1);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($payment_data));
+		curl_setopt($curl, CURLOPT_FORBID_REUSE, 1);
+		curl_setopt($curl, CURLOPT_FRESH_CONNECT, 1);
+		curl_setopt($curl, CURLOPT_POST, 1);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($payment_data));
 
 		$response = curl_exec($curl);
 
