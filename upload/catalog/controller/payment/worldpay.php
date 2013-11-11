@@ -66,7 +66,7 @@ class ControllerPaymentWorldPay extends Controller {
 		if (isset($this->request->post['transStatus']) && $this->request->post['transStatus'] == 'Y') {
 			$this->load->model('checkout/order');
 
-			// If returned successful but callbackPW doesn't match, set order to pendind and record reason
+			// If returned successful but callbackPW doesn't match, set order to pending and record reason
 			if (isset($this->request->post['callbackPW']) && ($this->request->post['callbackPW'] == $this->config->get('worldpay_password'))) {
 				$this->model_checkout_order->confirm($this->request->post['cartId'], $this->config->get('worldpay_order_status_id'));
 			} else {

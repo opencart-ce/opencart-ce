@@ -49,7 +49,7 @@ class ControllerCheckoutConfirm extends Controller {
 			$redirect = $this->url->link('checkout/cart');
 		}
 
-		// Validate minimum quantity requirments.
+		// Validate minimum quantity requirements.
 		$products = $this->cart->getProducts();
 
 		foreach ($products as $product) {
