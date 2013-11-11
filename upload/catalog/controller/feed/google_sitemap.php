@@ -1,20 +1,28 @@
 <?php
 class ControllerFeedGoogleSitemap extends Controller {
+	//how much ?
+	private $_limit = 100;
 	public function index() {
 		if ($this->config->get('google_sitemap_status')) {
 			$output  = '<?xml version="1.0" encoding="UTF-8"?>';
 			$output .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
 			$this->load->model('catalog/product');
-
-			$products = $this->model_catalog_product->getProducts();
-
-			foreach ($products as $product) {
-				$output .= '<url>';
-				$output .= '<loc>' . $this->url->link('product/product', 'product_id=' . $product['product_id']) . '</loc>';
-				$output .= '<changefreq>weekly</changefreq>';
-				$output .= '<priority>1.0</priority>';
-				$output .= '</url>';
+			$start = 0;
+			while(true) {				
+				$products = $this->model_catalog_product->getProducts(array('start'=>$start,'limit'=>$this->_limit));
+				if (empty($products)) {
+					break;
+				}
+				foreach ($products as $product) {
+					$output .= '<url>';
+					$output .= '<loc>' . $this->url->link('product/product', 'product_id=' . $product['product_id']) . '</loc>';
+					$output .= '<changefreq>weekly</changefreq>';
+					$output .= '<priority>1.0</priority>';
+					$output .= '</url>';
+				}
+				$start += $this->_limit;
+				
 			}
 
 			$this->load->model('catalog/category');
