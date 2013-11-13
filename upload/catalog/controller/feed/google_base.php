@@ -60,10 +60,10 @@ class ControllerFeedGoogleBase extends Controller {
 					foreach ($categories as $category) {
 						$path = $this->getPath($category['category_id']);
 
-						if ($path) {
+						if ($path && !is_array($path)) {
 							$string = '';
 
-							foreach (explode('_', $path) as $path_id) {
+							foreach (explode('_', (string)$path) as $path_id) {
 								$category_info = $this->model_catalog_category->getCategory($path_id);
 
 								if ($category_info) {

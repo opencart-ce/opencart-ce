@@ -14,7 +14,7 @@ class ControllerCommonContentTop extends Controller {
 
 		$layout_id = 0;
 
-		if ($route == 'product/category' && isset($this->request->get['path'])) {
+		if ($route == 'product/category' && isset($this->request->get['path']) && !is_array($this->request->get['path'])) {
 			$path = explode('_', (string)$this->request->get['path']);
 
 			$layout_id = $this->model_catalog_category->getCategoryLayoutId(end($path));

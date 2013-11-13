@@ -47,7 +47,7 @@ class ControllerProductCategory extends Controller {
 			'separator' => false
 		);
 
-		if (isset($this->request->get['path'])) {
+		if (isset($this->request->get['path']) && !is_array($this->request->get['path'])) {
 			$url = '';
 
 			if (isset($this->request->get['sort'])) {
@@ -405,7 +405,7 @@ class ControllerProductCategory extends Controller {
 		} else {
 			$url = '';
 
-			if (isset($this->request->get['path'])) {
+			if (isset($this->request->get['path']) && !is_array($this->request->get['path'])) {
 				$url .= '&path=' . $this->request->get['path'];
 			}
 

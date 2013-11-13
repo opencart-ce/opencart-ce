@@ -84,8 +84,8 @@ class ControllerCommonSeoUrl extends Controller {
 
 						unset($data[$key]);
 					}
-				} elseif ($key == 'path') {
-					$categories = explode('_', $value);
+				} elseif ($key == 'path' && !is_array($value)) {
+					$categories = explode('_', (string)$value);
 
 					foreach ($categories as $category) {
 						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = 'category_id=" . (int)$category . "'");
