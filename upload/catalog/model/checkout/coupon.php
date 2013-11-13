@@ -10,7 +10,7 @@ class ModelCheckoutCoupon extends Model {
 		}
 
 		if ($coupon_query->num_rows) {
-			if ($coupon_query->row['total'] >= $this->cart->getSubTotal()) {
+			if ($coupon_query->row['total'] > $this->cart->getSubTotal()) {
 				$status = false;
 			}
 
