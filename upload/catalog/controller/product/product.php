@@ -15,10 +15,10 @@ class ControllerProductProduct extends Controller {
 
 		$this->load->model('catalog/category');
 
-		if (isset($this->request->get['path'])) {
+		if (isset($this->request->get['path']) && !is_array($this->request->get['path'])) {
 			$path = '';
 
-			foreach (explode('_', $this->request->get['path']) as $path_id) {
+			foreach (explode('_', (string)$this->request->get['path']) as $path_id) {
 				if (!$path) {
 					$path = $path_id;
 				} else {
@@ -96,7 +96,7 @@ class ControllerProductProduct extends Controller {
 		if ($product_info) {
 			$url = '';
 
-			if (isset($this->request->get['path'])) {
+			if (isset($this->request->get['path']) && !is_array($this->request->get['path'])) {
 				$url .= '&path=' . $this->request->get['path'];
 			}
 
@@ -373,7 +373,7 @@ class ControllerProductProduct extends Controller {
 		} else {
 			$url = '';
 
-			if (isset($this->request->get['path'])) {
+			if (isset($this->request->get['path']) && !is_array($this->request->get['path'])) {
 				$url .= '&path=' . $this->request->get['path'];
 			}
 
