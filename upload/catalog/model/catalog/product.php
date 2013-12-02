@@ -87,7 +87,7 @@ class ModelCatalogProduct extends Model {
 				if (!empty($data['filter_name'])) {
 					$implode = array();
 
-					$words = explode(' ', trim(preg_replace('/\s\s+/', ' ', $data['filter_name'])));
+					$words = explode(' ', trim(preg_replace('/\s+/', ' ', $data['filter_name'])));
 
 					foreach ($words as $word) {
 						$implode[] = "LCASE(pd.name) LIKE '%" . $this->db->escape(utf8_strtolower($word)) . "%'";
@@ -483,7 +483,7 @@ class ModelCatalogProduct extends Model {
 				if (!empty($data['filter_name'])) {
 					$implode = array();
 
-					$words = explode(' ', trim(preg_replace('/\s\s+/', ' ', $data['filter_name'])));
+					$words = explode(' ', trim(preg_replace('/\s+/', ' ', $data['filter_name'])));
 
 					foreach ($words as $word) {
 						$implode[] = "LCASE(pd.name) LIKE '%" . $this->db->escape(utf8_strtolower($word)) . "%'";
