@@ -625,7 +625,7 @@ class ControllerProductProduct extends Controller {
 
 		$json = array();
 
-		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+		if ($this->request->server['REQUEST_METHOD'] == 'POST' && $this->config->get('config_review_status')) {
 			if (empty($this->request->post['name']) || (utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 25)) {
 				$json['error'] = $this->language->get('error_name');
 			}
