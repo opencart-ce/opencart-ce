@@ -634,7 +634,7 @@ class ControllerProductProduct extends Controller {
 				$json['error'] = $this->language->get('error_text');
 			}
 
-			if (empty($this->request->post['rating'])) {
+			if (empty($this->request->post['rating']) || (int)$this->request->post['rating'] < 1 || (int)$this->request->post['rating'] > 5) {
 				$json['error'] = $this->language->get('error_rating');
 			}
 
