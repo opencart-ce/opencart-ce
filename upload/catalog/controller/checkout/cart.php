@@ -312,7 +312,7 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['countries'] = $this->model_localisation_country->getCountries();
 
 			if (isset($this->request->post['zone_id'])) {
-				$this->data['zone_id'] = $this->request->post['zone_id'];
+				$this->data['zone_id'] = (int)$this->request->post['zone_id'];
 			} elseif (isset($this->session->data['shipping_zone_id'])) {
 				$this->data['zone_id'] = $this->session->data['shipping_zone_id'];
 			} else {
@@ -611,7 +611,7 @@ class ControllerCheckoutCart extends Controller {
 			$json['error']['country'] = $this->language->get('error_country');
 		}
 
-		if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
+		if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '' || !is_numeric($this->request->post['zone_id'])) {
 			$json['error']['zone'] = $this->language->get('error_zone');
 		}
 
