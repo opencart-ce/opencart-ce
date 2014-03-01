@@ -65,9 +65,9 @@
         </tr>
         <tr>
           <td>MySQL:</td>
-          <td><?php echo extension_loaded('mysql') ? 'On' : 'Off'; ?></td>
+          <td><?php echo extension_loaded('mysql') || extension_loaded('mysqli') ? 'On' : 'Off'; ?></td>
           <td>On</td>
-          <td align="center"><?php echo extension_loaded('mysql') ? '<img src="view/image/good.png" alt="Good" />' : '<img src="view/image/bad.png" alt="Bad" />'; ?></td>
+          <td align="center"><?php echo extension_loaded('mysql') || extension_loaded('mysqli') ? '<img src="view/image/good.png" alt="Good" />' : '<img src="view/image/bad.png" alt="Bad" />'; ?></td>
         </tr>
         <tr>
           <td>GD:</td>

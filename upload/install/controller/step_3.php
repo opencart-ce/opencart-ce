@@ -134,7 +134,7 @@ class ControllerStep3 extends Controller {
 
 		if (isset($this->request->post['db_driver'])) {
 			$this->data['db_driver'] = $this->request->post['db_driver'];
-		} elseif (version_compare(phpversion(), '5.5', '>=')) {
+		} elseif (version_compare(phpversion(), '5.5', '>=') || extension_loaded('mysqli')) {
 			$this->data['db_driver'] = 'mmysqli';
 		} else {
 			$this->data['db_driver'] = 'mysql';
