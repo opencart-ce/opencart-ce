@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2012, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.html or http://ckeditor.com/license
  */
 
@@ -13,7 +13,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.htmlEncodeOutput = false;
 	config.entities = false;
 	config.extraPlugins = 'codemirror';
-	config.codemirror_theme = 'rubyblue';
+	config.codemirror_theme = 'mbo';
 	config.toolbar = 'Custom';
 	config.allowedContent = true;
 
