@@ -2,6 +2,7 @@
 <html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>">
 <head>
 <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=10" />
 <title><?php echo $title; ?></title>
 <base href="<?php echo $base; ?>" />
 <?php if ($description) { ?>
