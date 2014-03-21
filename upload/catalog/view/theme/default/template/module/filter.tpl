@@ -27,12 +27,12 @@
 </div>
 <script type="text/javascript"><!--
 $('#button-filter').bind('click', function() {
-	filter = [];
+	var filter = [];
 
 	$('.box-filter input[type=\'checkbox\']:checked').each(function(element) {
 		filter.push(this.value);
 	});
 
-	location = '<?php echo $action; ?>&filter=' + filter.join(',');
+	location = '<?php echo $action; ?>' + ('<?php echo $action; ?>'.indexOf('?') < 0 ? '?' : '&') + 'filter=' + filter.join(',');
 });
 //--></script>
