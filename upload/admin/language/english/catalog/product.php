@@ -30,7 +30,7 @@ $_['entry_meta_keyword']     = 'Meta Tag Keywords:';
 $_['entry_meta_description'] = 'Meta Tag Description:';
 $_['entry_description']      = 'Description:';
 $_['entry_store']            = 'Stores:';
-$_['entry_keyword']          = 'SEO Keyword:<br /><span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';
+$_['entry_keyword']          = 'SEO Keyword:<br /><span class="help">Do not use spaces, instead replace spaces with - and make sure the keyword is globally unique.</span>';
 $_['entry_model']            = 'Model:';
 $_['entry_sku']              = 'SKU:<br/><span class="help">Stock Keeping Unit</span>';
 $_['entry_upc']              = 'UPC:<br/><span class="help">Universal Product Code</span>';
