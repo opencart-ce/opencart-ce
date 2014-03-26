@@ -33,7 +33,7 @@ class ControllerModuleCategory extends Controller {
 
 		foreach ($categories as $category) {
 			if ($this->config->get('config_product_count')) {
-				$total = $this->model_catalog_product->getTotalProducts(array('filter_category_id' => $category['category_id']));
+				$total = $this->model_catalog_product->getTotalProducts(array('filter_category_id' => $category['category_id'], 'filter_sub_category' => true));
 			} else {
 				$total = 0;
 			}
@@ -53,8 +53,6 @@ class ControllerModuleCategory extends Controller {
 				} else {
 					$product_total = 0;
 				}
-
-				$total += $product_total;
 
 				$children_data[] = array(
 					'category_id' => $child['category_id'],
