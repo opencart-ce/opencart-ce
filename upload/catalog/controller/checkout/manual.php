@@ -443,7 +443,7 @@ class ControllerCheckoutManual extends Controller {
 				$this->session->data['current_credit'] = $this->request->post['current_credit'];
 			}
 
-			// Save payment code to session. Klama fee total needs this.
+			// Save payment code to session. Klarna fee total needs this.
 			$this->session->data['payment_method']['code'] = isset($this->request->post['payment_code']) ? $this->request->post['payment_code'] : '';
 
 			// Totals
