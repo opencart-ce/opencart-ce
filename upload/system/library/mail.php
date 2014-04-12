@@ -183,8 +183,6 @@ class Mail {
 						trigger_error('Error: STARTTLS not accepted from server!');
 						exit();
 					}
-
-					stream_socket_enable_crypto($handle, true, STREAM_CRYPTO_METHOD_TLS_CLIENT);
 				}
 
 				if (!empty($this->username) && !empty($this->password)) {
