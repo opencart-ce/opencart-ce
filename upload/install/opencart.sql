@@ -683,7 +683,6 @@ INSERT INTO `oc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `add
 (148, 'Nauru', 'NR', 'NRU', '', 0, 1),
 (149, 'Nepal', 'NP', 'NPL', '', 0, 1),
 (150, 'Netherlands', 'NL', 'NLD', '', 1, 1),
-(151, 'Netherlands Antilles', 'AN', 'ANT', '', 0, 1),
 (152, 'New Caledonia', 'NC', 'NCL', '', 0, 1),
 (153, 'New Zealand', 'NZ', 'NZL', '', 0, 1),
 (154, 'Nicaragua', 'NI', 'NIC', '', 0, 1),
@@ -782,7 +781,13 @@ INSERT INTO `oc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `add
 (248, 'South Sudan', 'SS', 'SSD', '', 0, 1),
 (249, 'St. Barthelemy', 'BL', 'BLM', '', 0, 1),
 (250, 'St. Martin (French part)', 'MF', 'MAF', '', 0, 1),
-(251, 'Canary Islands', 'IC', 'ICA', '', 1, 1);
+(251, 'Canary Islands', 'IC', 'ICA', '', 1, 1),
+(252, 'Ascension Island', 'AC', 'ASC', '', 0, 1),
+(253, 'Kosovo, Republic of', 'XK', 'UNK', '', 0, 1),
+(254, 'Isle of Man', 'IM', 'IMN', '', 1, 1),
+(255, 'Tristan da Cunha', 'TA', 'TAA', '', 0, 1),
+(256, 'Sint Maarten', 'SX', 'SXM', '', 0, 1),
+(257, 'Spanish Territories of North Africa', 'EA', 'EAF', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -6095,9 +6100,6 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (3028, 196, 'SO', 'Southern', 1),
 (3029, 196, 'UV', 'Uva', 1),
 (3030, 196, 'WE', 'Western', 1),
-(3031, 197, 'A', 'Ascension', 1),
-(3032, 197, 'S', 'Saint Helena', 1),
-(3033, 197, 'T', 'Tristan da Cunha', 1),
 (3034, 199, 'ANL', 'A''ali an Nil', 1),
 (3035, 199, 'BAM', 'Al Bahr al Ahmar', 1),
 (3036, 199, 'BRT', 'Al Buhayrat', 1),
@@ -7014,7 +7016,6 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (3969, 101, 'ALB', 'Alborz', 1),
 (3970, 21, 'BRU', 'Brussels-Capital Region', 1),
 (3971, 138, 'AG', 'Aguascalientes', 1),
-(3972, 222, 'IOM', 'Isle of Man', 1),
 (3973, 242, '01', 'Andrijevica', 1),
 (3974, 242, '02', 'Bar', 1),
 (3975, 242, '03', 'Berane', 1),
@@ -7061,7 +7062,6 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (4016, 243, '22', 'Pirot', 1),
 (4017, 243, '23', 'Jablanica', 1),
 (4018, 243, '24', 'Pčinja', 1),
-(4019, 243, 'KM', 'Kosovo', 1),
 (4020, 245, 'BO', 'Bonaire', 1),
 (4021, 245, 'SA', 'Saba', 1),
 (4022, 245, 'SE', 'Sint Eustatius', 1),
@@ -7260,7 +7260,9 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (4218, 117, '0781817', 'Viļāni, Viļānu novads', 1),
 (4219, 117, '0781800', 'Viļānu novads', 1),
 (4220, 117, '0681817', 'Zilupe, Zilupes novads', 1),
-(4221, 117, '0681801', 'Zilupes novads', 1);
+(4221, 117, '0681801', 'Zilupes novads', 1),
+(4222, 257, 'CE', 'Ceuta', 1),
+(4223, 257, 'ML', 'Melilla', 1);
 
 -- --------------------------------------------------------
 
@@ -7284,5 +7286,6 @@ CREATE TABLE `oc_zone_to_geo_zone` (
 --
 
 INSERT INTO `oc_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id`, `geo_zone_id`, `date_added`, `date_modified`) VALUES
-(57, 222, 0, 3, '2010-02-26 22:33:24', '0000-00-00 00:00:00'),
-(65, 222, 0, 4, '2010-12-15 15:18:13', '0000-00-00 00:00:00');
+(65, 222, 0, 4, '2010-12-15 15:18:13', '0000-00-00 00:00:00'),
+(66, 222, 0, 3, '2014-04-21 16:36:23', '0000-00-00 00:00:00'),
+(67, 254, 0, 3, '2014-04-21 16:36:23', '0000-00-00 00:00:00');
