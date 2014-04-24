@@ -363,6 +363,8 @@ class ModelSaleOrder extends Model {
 		}
 
 		$this->db->query("UPDATE `" . DB_PREFIX . "order` SET total = '" . (float)$total . "', affiliate_id = '" . (int)$affiliate_id . "', commission = '" . (float)$commission . "' WHERE order_id = '" . (int)$order_id . "'");
+
+		$this->cache->delete('product.bestseller');
 	}
 
 	public function deleteOrder($order_id) {
@@ -393,6 +395,8 @@ class ModelSaleOrder extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_transaction WHERE order_id = '" . (int)$order_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_reward WHERE order_id = '" . (int)$order_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "affiliate_transaction WHERE order_id = '" . (int)$order_id . "'");
+
+		$this->cache->delete('product.bestseller');
 	}
 
 	public function getOrder($order_id) {
