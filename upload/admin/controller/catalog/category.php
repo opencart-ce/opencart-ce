@@ -189,6 +189,8 @@ class ControllerCatalogCategory extends Controller {
 			$this->data['success'] = '';
 		}
 
+		$url = '';
+
 		$pagination = new Pagination();
 		$pagination->total = $category_total;
 		$pagination->page = $page;
