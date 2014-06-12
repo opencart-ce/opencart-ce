@@ -3,10 +3,6 @@ class ControllerCommonForgotten extends Controller {
 	private $error = array();
 
 	public function index() {
-		if ($this->user->isLogged() && isset($this->session->data['token'])) {
-			$this->redirect($this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'));
-		}
-
 		if (!$this->config->get('config_password')) {
 			$this->redirect($this->url->link('common/login', '', 'SSL'));
 		}
