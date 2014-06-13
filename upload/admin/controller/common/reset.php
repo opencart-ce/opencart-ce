@@ -3,10 +3,6 @@ class ControllerCommonReset extends Controller {
 	private $error = array();
 
 	public function index() {
-		if ($this->user->isLogged()) {
-			$this->redirect($this->url->link('common/home', '', 'SSL'));
-		}
-
 		if (!$this->config->get('config_password')) {
 			$this->redirect($this->url->link('common/login', '', 'SSL'));
 		}
