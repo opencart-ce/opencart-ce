@@ -535,6 +535,8 @@
                 <td class="left"><?php echo $entry_reward; ?></td>
                 <td class="left"><input type="text" name="reward" value="<?php echo $reward; ?>" />
                   <input type="hidden" name="current_reward" value="<?php echo $current_reward; ?>" />
+                  <input type="hidden" name="currency_code" value="<?php echo $currency_code; ?>" /></td>
+                  <input type="hidden" name="currency_value" value="<?php echo $currency_value; ?>" /></td>
                   <input type="hidden" name="current_credit" value="<?php echo $current_credit; ?>" /></td>
               </tr>
               <tr>
