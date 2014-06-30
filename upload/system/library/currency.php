@@ -176,14 +176,5 @@ class Currency {
 	public function has($currency) {
 		return isset($this->currencies[$currency]);
 	}
-
-	public function override($currency, $value) {
-		if ($this->has($currency)) {
-			$this->currencies[$currency]['value'] = $value;
-			$this->currencies[$currency]['status'] = 1;
-
-			$this->set($currency);
-		}
-	}
 }
 ?>
