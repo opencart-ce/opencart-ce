@@ -1154,6 +1154,19 @@ class ControllerSaleOrder extends Controller {
 			$this->data['order_totals'] = array();
 		}
 
+		// Currency
+		if (!empty($order_info)) {
+			$this->data['currency_code'] = $order_info['currency_code'];
+		} else {
+			$this->data['currency_code'] = '';
+		}
+
+		if (!empty($order_info)) {
+			$this->data['currency_value'] = $order_info['currency_value'];
+		} else {
+			$this->data['currency_value'] = '';
+		}
+
 		// Check current coupon, voucher, reward and credit
 		$current_coupon  = '';
 		$current_voucher = '';
