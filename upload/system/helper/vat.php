@@ -30,16 +30,17 @@ function vat_validation($prefix, $number) {
 		'RO' => 'RO', //Romania
 		'SK' => 'SK', //Slovakia
 		'CZ' => 'CZ', //Czech Republic
-		'SI' => 'SI'  //Slovenia
+		'SI' => 'SI', //Slovenia
+		'HR' => 'HR'  //Croatia
 	);
 
 	$number = str_replace(' ', '', $number);
 
-	if (array_search(substr($number, 0, 2), $iso_code_2_data)) {
-		$number = substr($number, 2);
-	}
-
 	if (array_key_exists($prefix, $iso_code_2_data)) {
+		if ($iso_code_2_data[$prefix] == substr($number, 0, 2)) {
+			$number = substr($number, 2);
+		}
+
 		$response = file_get_contents('http://ec.europa.eu/taxation_customs/vies/viesquer.do?ms=' . $iso_code_2_data[$prefix] . '&iso=' . $iso_code_2_data[$prefix] . '&vat=' . $number);
 
 		if (preg_match('/\bvalid VAT number\b/i', $response)) {
