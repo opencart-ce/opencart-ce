@@ -8,6 +8,14 @@ final class Encryption {
 	private $key;
 	private $iv;
 	
+	
+	protected $_digests = array(
+		'sha224' => 28,
+		'sha256' => 32,
+		'sha384' => 48,
+		'sha512' => 64
+	);
+	
 	const SEPARATOR = '$'; // Something outside the base64 alphabet please
 
 	public function __construct($key = null)
@@ -64,6 +72,17 @@ final class Encryption {
 		// Proper IV for encryption
 		$iv = mcrypt_create_iv(16, MCRYPT_DEV_URANDOM);
 		
+		// PKCS PADDING
+		$padded = $value;
+			$l = strlen($value) % 16;
+		if($l === 0) {
+			// Special case
+			$l = 16;
+		} else {
+			$l = 16 - $l;
+		}
+		$padded .= str_repeat(chr($l), $l);
+		
 		// iv || '$' || ciphertext
 		return $this->toBase64($iv) .
 			self::SEPARATOR .
@@ -71,7 +90,7 @@ final class Encryption {
 				mcrypt_encrypt(
 					MCRYPT_RIJNDAEL_128,
 					$key,
-					$value
+					$padded
 					MCRYPT_MODE_CBC,
 					$iv
 				)
@@ -122,14 +141,12 @@ final class Encryption {
 	 * @param string $ciphertext 
 	 * @param string $key (optional)
 	 * @param string $iv (optional)
-	 * 
-	 * @todo replace trim() with PKCS#7 padding removal
 	 */
 	public function decryptOnly($ciphertext, $key = null, $iv = null)
 	{
 		if (empty($key)) {
 			if(empty($this->key)) {
-				die("No encryption key provided");
+				throw new CryptoException("No encryption key provided");
 			}
 			$key = $this->key;
 		}
@@ -140,30 +157,32 @@ final class Encryption {
 			}
 			list($iv, $ciphertext) = $blob;
 		}
-		return trim(
-			mcrypt_decrypt(
+		
+		
+		$plain = mcrypt_decrypt(
 				MCRYPT_RIJNDAEL_128,
 				$key,
 				$this->fromBase64($ciphertext), 
 				MCRYPT_MODE_CBC, 
 				$iv
-			)
-		);
+			);
 		
+		// Finally emove PKCS#7 Padding:
+		$l = strlen($plain) - ord($plain[strlen($plain) - 1]);
+		return substr($plain, 0, $l);
 	}
 	
 	/**
-	 * Simple HMAC key derivation
+	 * Derive two keys from a master key (HKDF)
+	 * 
 	 * @param master_key
 	 * @return array[2]
-	 * 
-	 * @todo replace with HKDF from CodeIgniter 3.0
 	 */
 	public function deriveKeys($master_key)
 	{	
 		return array(
-			hash_hmac('sha256', $master_key, 'encryption', true),
-			hash_hmac('sha256', $master_key, 'authentication', true)
+			$this->hkdf($master_key, 'sha512', NULL, strlen($master_key), 'encryption'),
+			$this->hkdf($master_key, 'sha512', NULL, strlen($master_key), 'authentication')
 		);
 		
 	}
@@ -188,6 +207,47 @@ final class Encryption {
 	protected function fromBase64($string)
 	{
 		return base64_decode(strtr($string, '-_,', '+/=');
+	}
+	
+
+	/**
+	 * HKDF - stolen from CodeIgniter
+	 *
+	 * @link	https://tools.ietf.org/rfc/rfc5869.txt
+	 * @param	$key	Input key
+	 * @param	$digest	A SHA-2 hashing algorithm
+	 * @param	$salt	Optional salt
+	 * @param	$length	Output length (defaults to the selected digest size)
+	 * @param	$info	Optional context/application-specific info
+	 * @return	string	A pseudo-random key
+	 */
+	public function hkdf($key, $digest = 'sha512', $salt = NULL, $length = NULL, $info = '')
+	{
+		if ( ! isset($this->_digests[$digest]))
+		{
+			return FALSE;
+		}
+
+		if (empty($length) OR ! is_int($length))
+		{
+			$length = $this->_digests[$digest];
+		}
+		elseif ($length > (255 * $this->_digests[$digest]))
+		{
+			return FALSE;
+		}
+
+		strlen($salt) OR $salt = str_repeat("\0", $this->_digests[$digest]);
+
+		$prk = hash_hmac($digest, $key, $salt, TRUE);
+		$key = '';
+		for ($key_block = '', $block_index = 1; strlen($key) < $length; $block_index++)
+		{
+			$key_block = hash_hmac($digest, $key_block.$info.chr($block_index), $prk, TRUE);
+			$key .= $key_block;
+		}
+
+		return substr($key, 0, $length);
 	}
 }
 ?>
