@@ -6,9 +6,8 @@ class CryptoException extends Exception
 
 final class Encryption {
 	private $key;
-	private $iv;
 	
-	
+	// Digest lengths for various hash functions
 	protected $_digests = array(
 		'sha224' => 28,
 		'sha256' => 32,
@@ -16,8 +15,14 @@ final class Encryption {
 		'sha512' => 64
 	);
 	
-	const SEPARATOR = '$'; // Something outside the base64 alphabet please
+	// Something outside the base64 alphabet please:
+	const SEPARATOR = '$'; 
 
+	/**
+	 * Constructor
+	 * @param $key (optional) - sets the default master key for encryption/authentication
+	 * 	for a particular instance of this class.
+	 */
 	public function __construct($key = null)
 	{
 		if(isset($key)) {
@@ -26,11 +31,15 @@ final class Encryption {
 	}
 
 	/**
-	 * Authenticated encryption
+	 * AUTHENTICATED ENCRYPTION
+	 * AES-CBC then HMAC-SHA256
 	 * 
 	 * @param string $value - this is the message to be encrypted
 	 * @param string $key (optional) - use this as a master key
 	 * @return string
+	 * 
+	 * Ouput format: iv || '$' || ciphertext || '$' || HMAC
+	 * 	(where || means "concatenate")
 	 */
 	public function encrypt($value, $key = null)
 	{
@@ -44,7 +53,6 @@ final class Encryption {
 		// encrypted := iv || '$' || ciphertext
 		$encrypted = $this->encryptOnly($value, $eKey);
 		
-		// return: iv || '$' || ciphertext || '$' || HMAC
 		return $encrypted .
 			self::SEPARATOR .
 			$this->toBase64(
@@ -54,11 +62,11 @@ final class Encryption {
 	
 	/**
 	 * Encryption without authentication
+	 * Uses PKCS#7 Padding instead of mcrypt's default NULL padding
+	 * 
 	 * @param string $value - this is the message to be encrypted
 	 * @param string $key (optional) - encrypt with this key
 	 * @return string
-	 * 
-	 * @todo PKCS#7 Padding
 	 */
 	public function encryptOnly($plaintext, $key = null)
 	{
@@ -98,7 +106,17 @@ final class Encryption {
 	}
 	
 	/**
-	 * Verify and decrypt a string
+	 * Verify and decrypt a string. One of three strategies should be employed. Either:
+	 * 1. decrypt(str) 
+	 *    ... where str := iv || '$' || ciphertext || '$' || HMAC
+	 * 2. decrypt(str, key, iv, hmac)
+	 * 3. decrypt(str, NULL, iv, hmac) 
+	 *    ... assuming key was passed to the constructor
+	 * 
+	 * The output from encrypt() is compatible with method 1
+	 * 
+	 * @param $value - Ciphertext block
+	 * @param $key 
 	 */
 	public function decrypt($value, $key = null, $iv = null, $hmac = null)
 	{
@@ -138,6 +156,7 @@ final class Encryption {
 	
 	/**
 	 * Only decrypt, discarding signatures
+	 * 
 	 * @param string $ciphertext 
 	 * @param string $key (optional)
 	 * @param string $iv (optional)
@@ -153,7 +172,7 @@ final class Encryption {
 		if (empty($iv)) {
 			$blob = explode(self::SEPARATOR, $ciphertext);
 			if (count($blob) < 2) {
-				die("No IV provided!");	
+				throw new CryptoException("No IV provided!");	
 			}
 			list($iv, $ciphertext) = $blob;
 		}
@@ -184,7 +203,6 @@ final class Encryption {
 			$this->hkdf($master_key, 'sha512', NULL, strlen($master_key), 'encryption'),
 			$this->hkdf($master_key, 'sha512', NULL, strlen($master_key), 'authentication')
 		);
-		
 	}
 	
 	/**
