@@ -564,7 +564,7 @@ class ControllerProductProduct extends Controller {
 				'common/header'
 			);
 
-			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . '/1.1 404 Not Found');
+			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
 
 			$this->response->setOutput($this->render());
 		}
