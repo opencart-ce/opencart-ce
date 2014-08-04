@@ -6054,7 +6054,6 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (2982, 195, 'CZ', 'C&aacute;diz', 1),
 (2983, 195, 'CT', 'Cantabria', 1),
 (2984, 195, 'CL', 'Castell&oacute;n', 1),
-(2985, 195, 'CE', 'Ceuta', 1),
 (2986, 195, 'CR', 'Ciudad Real', 1),
 (2987, 195, 'CD', 'C&oacute;rdoba', 1),
 (2988, 195, 'CU', 'Cuenca', 1),
@@ -6066,20 +6065,17 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (2994, 195, 'HS', 'Huesca', 1),
 (2995, 195, 'JN', 'Ja&eacute;n', 1),
 (2996, 195, 'RJ', 'La Rioja', 1),
-(2997, 195, 'PM', 'Las Palmas', 1),
 (2998, 195, 'LE', 'Leon', 1),
 (2999, 195, 'LL', 'Lleida', 1),
 (3000, 195, 'LG', 'Lugo', 1),
 (3001, 195, 'MD', 'Madrid', 1),
 (3002, 195, 'MA', 'Malaga', 1),
-(3003, 195, 'ML', 'Melilla', 1),
 (3004, 195, 'MU', 'Murcia', 1),
 (3005, 195, 'NV', 'Navarra', 1),
 (3006, 195, 'OU', 'Ourense', 1),
 (3007, 195, 'PL', 'Palencia', 1),
 (3008, 195, 'PO', 'Pontevedra', 1),
 (3009, 195, 'SL', 'Salamanca', 1),
-(3010, 195, 'SC', 'Santa Cruz de Tenerife', 1),
 (3011, 195, 'SG', 'Segovia', 1),
 (3012, 195, 'SV', 'Sevilla', 1),
 (3013, 195, 'SO', 'Soria', 1),
@@ -6407,7 +6403,7 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (3337, 215, 'CKR', 'Çankırı', 1),
 (3338, 215, 'COR', 'Çorum', 1),
 (3339, 215, 'DEN', 'Denizli', 1),
-(3340, 215, 'DIY', 'Diyarbakir', 1),
+(3340, 215, 'DIY', 'Diyarbakır', 1),
 (3341, 215, 'DUZ', 'Düzce', 1),
 (3342, 215, 'EDI', 'Edirne', 1),
 (3343, 215, 'ELA', 'Elazığ', 1),
@@ -7262,7 +7258,9 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (4220, 117, '0681817', 'Zilupe, Zilupes novads', 1),
 (4221, 117, '0681801', 'Zilupes novads', 1),
 (4222, 257, 'CE', 'Ceuta', 1),
-(4223, 257, 'ML', 'Melilla', 1);
+(4223, 257, 'ML', 'Melilla', 1),
+(4224, 251, 'PM', 'Las Palmas', 1),
+(4225, 251, 'SC', 'Santa Cruz de Tenerife', 1);
 
 -- --------------------------------------------------------
 
