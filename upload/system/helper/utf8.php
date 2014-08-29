@@ -214,6 +214,26 @@ function utf8_substr($string, $offset, $length = null) {
 
 }
 
+/**
+
+* UTF-8 aware alternative to strtolower
+* Make a string lowercase
+* Note: The concept of a characters "case" only exists is some alphabets
+* such as Latin, Greek, Cyrillic, Armenian and archaic Georgian - it does
+* not exist in the Chinese alphabet, for example. See Unicode Standard
+* Annex #21: Case Mappings
+* Note: requires utf8_to_unicode and utf8_from_unicode
+* @author Andreas Gohr <andi@splitbrain.org>
+* @param string
+* @return mixed either string in lowercase or FALSE is UTF-8 invalid
+* @see http://www.php.net/strtolower
+* @see utf8_to_unicode
+* @see utf8_from_unicode
+* @see http://www.unicode.org/reports/tr21/tr21-5.html
+* @see http://dev.splitbrain.org/view/darcs/dokuwiki/inc/utf8.php
+* @package utf8
+* @subpackage strings
+*/
 function utf8_strtolower($string) {
 	static $UTF8_UPPER_TO_LOWER = NULL;
 
@@ -452,6 +472,26 @@ function utf8_strtolower($string) {
 	return utf8_from_unicode($unicode);
 }
 
+
+/**
+* UTF-8 aware alternative to strtoupper
+* Make a string uppercase
+* Note: The concept of a characters "case" only exists is some alphabets
+* such as Latin, Greek, Cyrillic, Armenian and archaic Georgian - it does
+* not exist in the Chinese alphabet, for example. See Unicode Standard
+* Annex #21: Case Mappings
+* Note: requires utf8_to_unicode and utf8_from_unicode
+* @author Andreas Gohr <andi@splitbrain.org>
+* @param string
+* @return mixed either string in lowercase or FALSE is UTF-8 invalid
+* @see http://www.php.net/strtoupper
+* @see utf8_to_unicode
+* @see utf8_from_unicode
+* @see http://www.unicode.org/reports/tr21/tr21-5.html
+* @see http://dev.splitbrain.org/view/darcs/dokuwiki/inc/utf8.php
+* @package utf8
+* @subpackage strings
+*/
 function utf8_strtoupper($string) {
 	static $UTF8_LOWER_TO_UPPER = NULL;
 
