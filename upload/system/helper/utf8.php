@@ -231,6 +231,8 @@ function utf8_substr($string, $offset, $length = null) {
 * @see utf8_from_unicode
 * @see http://www.unicode.org/reports/tr21/tr21-5.html
 * @see http://dev.splitbrain.org/view/darcs/dokuwiki/inc/utf8.php
+* @license GNU Library or Lesser General Public License version 2.0 (LGPLv2)
+* @link http://phputf8.sourceforge.net/api//utf8/strings/_utf8_native_core_php.html
 * @package utf8
 * @subpackage strings
 */
@@ -489,6 +491,8 @@ function utf8_strtolower($string) {
 * @see utf8_from_unicode
 * @see http://www.unicode.org/reports/tr21/tr21-5.html
 * @see http://dev.splitbrain.org/view/darcs/dokuwiki/inc/utf8.php
+* @license GNU Library or Lesser General Public License version 2.0 (LGPLv2)
+* @link http://phputf8.sourceforge.net/api//utf8/strings/_utf8_native_core_php.html
 * @package utf8
 * @subpackage strings
 */
