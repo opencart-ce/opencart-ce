@@ -196,6 +196,18 @@ class ModelUpgrade extends Model {
 			$db->query("INSERT INTO `" . DB_PREFIX . "setting` SET `store_id` = 0, `group` = 'config', `key` = 'config_customer_group_display', `value` = 'a:1:{i:0;s:1:\"8\";}', `serialized` = 1");
 		}
 
+		## v1.5.4
+		// Product tag table to product description tag
+		$query = $db->query("SHOW TABLES LIKE 'product_tag'");
+
+		if ($query->num_rows) {
+			$query = $db->query("SELECT `tag` FROM `" . DB_PREFIX . "product_description` WHERE `tag` != ''");
+
+			if (!$query->num_rows) {
+				$db->query("UPDATE `" . DB_PREFIX . "product_description` `pd` SET `tag` = (SELECT GROUP_CONCAT(DISTINCT `pt`.`tag` ORDER BY `pt`.`product_tag_id`) FROM `" . DB_PREFIX . "product_tag` `pt` WHERE `pd`.`product_id` = `pt`.`product_id` AND `pd`.`language_id` = `pt`.`language_id` GROUP BY `pt`.`product_id`, `pt`.`language_id`)");
+			}
+		}
+
 		// Attempt to add new HTTPS_CATALOG to the admin/config.php
 		// Get HTTP_ADMIN from main config.php to find out what the admin folder name is incase it was renamed
 		$file = file(DIR_OPENCART . 'config.php');
