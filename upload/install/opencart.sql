@@ -3800,9 +3800,9 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (674, 43, 'AT', 'Atacama', 1),
 (675, 43, 'BI', 'Bio-Bio', 1),
 (676, 43, 'CO', 'Coquimbo', 1),
-(677, 43, 'LI', 'Libertador General Bernardo O''Hi', 1),
+(677, 43, 'LI', 'Libertador General Bernardo O''Higgins', 1),
 (678, 43, 'LL', 'Los Lagos', 1),
-(679, 43, 'MA', 'Magallanes y de la Antartica Chi', 1),
+(679, 43, 'MA', 'Magallanes y de la Antartica Chilena', 1),
 (680, 43, 'ML', 'Maule', 1),
 (681, 43, 'RM', 'Region Metropolitana', 1),
 (682, 43, 'TA', 'Tarapaca', 1),
@@ -7259,7 +7259,9 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (4222, 257, 'CE', 'Ceuta', 1),
 (4223, 257, 'ML', 'Melilla', 1),
 (4224, 251, 'PM', 'Las Palmas', 1),
-(4225, 251, 'SC', 'Santa Cruz de Tenerife', 1);
+(4225, 251, 'SC', 'Santa Cruz de Tenerife', 1),
+(4226, 43, 'AP', 'Arica y Parinacota', 1),
+(4227, 43, 'LR', 'Los Rios', 1);
 
 -- --------------------------------------------------------
 
