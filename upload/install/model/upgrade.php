@@ -349,6 +349,12 @@ class ModelUpgrade extends Model {
 			$this->db->query("DROP TABLE `" . DB_PREFIX . "customer_ip_blacklist`");
 		}
 
+		// Product tag table to product description tag
+		if (isset($table_old_data[DB_PREFIX . 'product_tag']) && !in_array('tag', $table_old_data[DB_PREFIX . 'product_description'])) {
+			$this->db->query("UPDATE `" . DB_PREFIX . "product_description` `pd` SET `tag` = (SELECT GROUP_CONCAT(DISTINCT `pt`.`tag` ORDER BY `pt`.`product_tag_id`) FROM `" . DB_PREFIX . "product_tag` `pt` WHERE `pd`.`product_id` = `pt`.`product_id` AND `pd`.`language_id` = `pt`.`language_id` GROUP BY `pt`.`product_id`, `pt`.`language_id`)");
+			$this->db->query("DROP TABLE `" . DB_PREFIX . "product_tag`");
+		}
+
 		// Sort the categories to take advantage of the nested set model
 		$this->repairCategories(0);
 	}
