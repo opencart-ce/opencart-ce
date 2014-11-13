@@ -79,7 +79,7 @@ $_['entry_sort_order']             = 'Sort Order:';
 $_['entry_debug']                  = 'Debug Mode:<br /><span class="help">Saves send/recv data to the system log</span>';
 
 // Error
-$_['error_permission']             = 'Warning: You do not have permission to modify UPS (US) shipping!';
+$_['error_permission']             = 'Warning: You do not have permission to modify UPS shipping!';
 $_['error_key']                    = 'Access Key Required!';
 $_['error_username']               = 'Username Required!';
 $_['error_password']               = 'Password Required!';
