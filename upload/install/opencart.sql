@@ -2235,7 +2235,7 @@ CREATE TABLE `oc_product` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `model` varchar(64) NOT NULL,
   `sku` varchar(64) NOT NULL,
-  `upc` varchar(12) NOT NULL,
+  `upc` varchar(14) NOT NULL,
   `ean` varchar(14) NOT NULL,
   `jan` varchar(13) NOT NULL,
   `isbn` varchar(13) NOT NULL,
