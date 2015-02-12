@@ -1,0 +1,28 @@
+<modification>
+	<id>VQMod Manager Menu Shortcut</id>
+	<version>1.0.0</version>
+	<vqmver>2.3.0</vqmver>
+	<author>Ryan (rph) - OpenCartHelp.com</author>
+	<file name="admin/controller/common/header.php">
+		<operation error="abort">
+			<search position="before"><![CDATA[$this->data['text_zone']]]></search>
+			<add><![CDATA[		$this->data['text_vqmod_manager'] = $this->language->get('text_vqmod_manager');]]></add>
+		</operation>
+		<operation error="abort">
+			<search position="before"><![CDATA[$this->data['zone']]]></search>
+			<add><![CDATA[			$this->data['vqmod_manager'] = $this->url->link('module/vqmod_manager', 'token=' . $this->session->data['token'], 'SSL');]]></add>
+		</operation>
+	</file>
+	<file name="admin/language/*/common/header.php">
+		<operation error="abort">
+			<search position="before"><![CDATA[$_['text_zone']]]></search>
+			<add><![CDATA[$_['text_vqmod_manager']               = 'VQMod Manager';]]></add>
+		</operation>
+	</file>
+	<file name="admin/view/template/common/header.tpl">
+		<operation error="abort">
+			<search position="after"><![CDATA[<a href="<?php echo $feed; ?>"><?php echo $text_feed; ?></a>]]></search>
+			<add><![CDATA[          <li><a href="<?php echo $vqmod_manager; ?>"><?php echo $text_vqmod_manager; ?></a></li>]]></add>
+		</operation>
+	</file>
+</modification>

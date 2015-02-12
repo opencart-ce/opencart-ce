@@ -1,0 +1,97 @@
+hr {
+	color: #ddd;
+	background-color: #ddd;
+	height: 1px;
+	border: none;
+	text-align: left;
+	width: 97%
+}
+#error-log {
+	width: 99%;
+	height: 300px;
+	padding: 5px;
+	border: 1px solid #CCCCCC;
+	background: #fff;
+	overflow: scroll;
+	margin-bottom: 10px;
+}
+#vqcache {
+	min-width: 250px;
+	margin-bottom: 10px;
+}
+a.about {
+	/*color: #0078f3;*/
+	text-decoration: none;
+	/*font-weight: bold;*/
+}
+a.about:hover {
+	/*color: #0078f3;*/
+	text-decoration: underline;
+	/*font-weight: bold;*/
+}
+.action {
+	text-align: center;
+	white-space: nowrap;
+}
+a.action-link:hover {
+	text-decoration: none;
+}
+.description {
+	font-size: 0.9em;
+	margin: 3px 0px;
+}
+.help {
+	color: #666;
+	font-size: 11px;
+	font-weight: normal;
+	font-family: Verdana, Geneva, sans-serif;
+	display: block;
+}
+.error-install {
+	font-family: "Courrier New", "Lucida Console", monospace;
+	font-weight: bold;
+}
+.highlight {
+	color: #ff0000;
+}
+.right {
+	text-align: right;
+}
+.vqmm-list {
+	border-collapse: collapse;
+	width: 100%;
+	border-top: 1px solid #dddddd;
+	border-left: 1px solid #dddddd;
+	margin-bottom: 20px;
+}
+.vqmm-list thead th {
+	background-color: #efefef;
+	padding: 0px 5px;
+	text-decoration: none;
+	color: #222222;
+	font-weight: bold;
+	border-right: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+}
+.vqmm-list tbody td {
+	vertical-align: middle;
+	padding: 0px 5px;
+}
+.vqmm-list td {
+	border-right: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+}
+.vqmm-list .left {
+	text-align: left;
+	padding: 7px;
+}
+.vqmm-list .center {
+	text-align: center;
+	padding: 7px;
+}
+.row-odd td{
+	background-color: #f4f4f8;
+}
+.row-even td {
+	background-color: #fff;
+}
