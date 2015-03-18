@@ -1,20 +1,19 @@
 <?php
 class ModelCheckoutCoupon extends Model {
-	public function getCoupon($code, $limits = true) {
+	public function getCoupon($code, $limits = true, $verify = true) {
 		$status = true;
 
-		if ($limits) {
+		if ($limits && $verify) {
 			$coupon_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "coupon` WHERE code = '" . $this->db->escape($code) . "' AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
 		} else {
 			$coupon_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "coupon` WHERE code = '" . $this->db->escape($code) . "' AND status = '1'");
 		}
 
 		if ($coupon_query->num_rows) {
-			if ($coupon_query->row['total'] > $this->cart->getSubTotal()) {
-				$status = false;
-			}
-
-			if ($limits) {
+			if ($limits && $verify) {
+				if ($coupon_query->row['total'] > $this->cart->getSubTotal()) {
+					$status = false;
+				}
 
 				$coupon_history_query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "coupon_history` ch WHERE ch.coupon_id = '" . (int)$coupon_query->row['coupon_id'] . "'");
 
@@ -54,7 +53,7 @@ class ModelCheckoutCoupon extends Model {
 					}
 				}
 
-				if (!$coupon_product) {
+				if (!$coupon_product && $verify) {
 					$status = false;
 				}
 			}
