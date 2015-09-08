@@ -1747,7 +1747,7 @@ DROP TABLE IF EXISTS `oc_order_history`;
 CREATE TABLE `oc_order_history` (
   `order_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
-  `order_status_id` int(5) NOT NULL,
+  `order_status_id` int(11) NOT NULL,
   `notify` tinyint(1) NOT NULL DEFAULT '0',
   `comment` text COLLATE utf8_bin NOT NULL,
   `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
