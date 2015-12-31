@@ -271,7 +271,7 @@ $(document).ready(function() {
 
 	$('#column-right a').live('dblclick', function() {
 		<?php if ($fckeditor !== false) { ?>
-		window.opener.CKEDITOR.tools.callFunction(<?php echo $fckeditor; ?>, '<?php echo $directory; ?>' + $(this).find('input[name=\'image\']').attr('value'));
+		window.opener.CKEDITOR.tools.callFunction(<?php echo $fckeditor; ?>, '<?php echo $directory; ?>' + encodeURIComponent($(this).find('input[name=\'image\']').attr('value')).replace('%2F', '/'));
 
 		self.close();
 		<?php } else { ?>
