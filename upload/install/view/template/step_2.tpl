@@ -93,6 +93,12 @@
           <td>On</td>
           <td align="center"><?php echo extension_loaded('zlib') ? '<img src="view/image/good.png" alt="Good" />' : '<img src="view/image/bad.png" alt="Bad" />'; ?></td>
         </tr>
+        <tr>
+          <td>JSON:</td>
+          <td><?php echo extension_loaded('json') ? 'On' : 'Off'; ?></td>
+          <td>On</td>
+          <td align="center"><?php echo extension_loaded('json') ? '<img src="view/image/good.png" alt="Good" />' : '<img src="view/image/bad.png" alt="Bad" />'; ?></td>
+        </tr>
       </table>
     </fieldset>
     <p>3. Please make sure you have set the correct permissions on the files list below.</p>
