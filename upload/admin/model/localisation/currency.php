@@ -110,6 +110,10 @@ class ModelLocalisationCurrency extends Model {
 			} else {
 				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "currency WHERE code != '" . $this->db->escape($this->config->get('config_currency')) . "' AND date_modified < '" .  $this->db->escape(date('Y-m-d H:i:s', strtotime('-1 day'))) . "'");
 			}
+			
+			if ($query->num_rows === 0) {
+				return;
+			}
 
 			foreach ($query->rows as $result) {
 				$data[] = $this->config->get('config_currency') . $result['code'] . '=X';
