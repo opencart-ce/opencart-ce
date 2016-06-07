@@ -51,6 +51,18 @@ class ControllerUpgrade extends Controller {
 			}
 		}
 
+		if (DB_DRIVER == 'mmysqli') {
+			if (!$connection = @mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD)) {
+				$this->error['warning'] = 'Error: Could not connect to the database please make sure the database server, username and password is correct in the config.php file!';
+			} else {
+				if (!mysqli_select_db($connection, DB_DATABASE)) {
+					$this->error['warning'] = 'Error: Database "'. DB_DATABASE . '" does not exist!';
+				}
+
+				mysqli_close($connection);
+			}
+		}
+
 		if (!$this->error) {
 			return true;
 		} else {
