@@ -159,6 +159,30 @@
                   <?php } ?>
                 </select></td>
             </tr>
+            <tr>
+	      <td><?php echo $entry_length_class; ?></td>
+	      <td><select name="config_length_class_id">
+		  <?php foreach ($length_classes as $length_class) { ?>
+		  <?php if ($length_class['length_class_id'] == $config_length_class_id) { ?>
+		  <option value="<?php echo $length_class['length_class_id']; ?>" selected="selected"><?php echo $length_class['title']; ?></option>
+		  <?php } else { ?>
+		  <option value="<?php echo $length_class['length_class_id']; ?>"><?php echo $length_class['title']; ?></option>
+		  <?php } ?>
+		  <?php } ?>
+		</select></td>
+	    </tr>
+	    <tr>
+	     <td><?php echo $entry_weight_class; ?></td>
+	     <td><select name="config_weight_class_id">
+		  <?php foreach ($weight_classes as $weight_class) { ?>
+		  <?php if ($weight_class['weight_class_id'] == $config_weight_class_id) { ?>
+		  <option value="<?php echo $weight_class['weight_class_id']; ?>" selected="selected"><?php echo $weight_class['title']; ?></option>
+		  <?php } else { ?>
+		  <option value="<?php echo $weight_class['weight_class_id']; ?>"><?php echo $weight_class['title']; ?></option>
+		  <?php } ?>
+		  <?php } ?>
+		</select></td>
+	    </tr>
           </table>
         </div>
         <div id="tab-option">
