@@ -80,7 +80,8 @@ class ControllerFeedGoogleBase extends Controller {
 					}
 
 					$output .= '<g:quantity>' . $product['quantity'] . '</g:quantity>';
-					$output .= '<g:upc>' . $product['upc'] . '</g:upc>';
+					<!-- Change Google Product Feed: UPC (12) to GTIN(8-12-13-14) -->
+					$output .= '<g:gtin>' . $product['upc'] . '</g:gtin>';
 					$output .= '<g:weight>' . $this->weight->format($product['weight'], $product['weight_class_id']) . '</g:weight>';
 					$output .= '<g:availability>' . ($product['quantity'] ? 'in stock' : 'out of stock') . '</g:availability>';
 					$output .= '</item>';
