@@ -755,7 +755,7 @@ class ControllerSaleOrder extends Controller {
 		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->request->get['order_id'])) {
-			$this->data['order_id'] = $this->request->get['order_id'];
+			$this->data['order_id'] = (int)$this->request->get['order_id'];
 		} else {
 			$this->data['order_id'] = 0;
 		}
@@ -1602,7 +1602,7 @@ class ControllerSaleOrder extends Controller {
 			$this->data['invoice'] = $this->url->link('sale/order/invoice', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');
 			$this->data['cancel'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
-			$this->data['order_id'] = $this->request->get['order_id'];
+			$this->data['order_id'] = (int)$this->request->get['order_id'];
 
 			if ($order_info['invoice_no']) {
 				$this->data['invoice_no'] = $order_info['invoice_prefix'] . $order_info['invoice_no'];

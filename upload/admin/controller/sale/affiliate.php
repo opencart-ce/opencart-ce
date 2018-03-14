@@ -697,7 +697,7 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->request->get['affiliate_id'])) {
-			$this->data['affiliate_id'] = $this->request->get['affiliate_id'];
+			$this->data['affiliate_id'] = (int)$this->request->get['affiliate_id'];
 		} else {
 			$this->data['affiliate_id'] = 0;
 		}

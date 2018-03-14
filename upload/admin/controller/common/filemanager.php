@@ -39,13 +39,13 @@ class ControllerCommonFileManager extends Controller {
 		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 
 		if (isset($this->request->get['field'])) {
-			$this->data['field'] = $this->request->get['field'];
+			$this->data['field'] = preg_replace('/[^a-zA-Z0-9_\-]/', '', $this->request->get['field']);
 		} else {
 			$this->data['field'] = '';
 		}
 
 		if (isset($this->request->get['CKEditorFuncNum'])) {
-			$this->data['fckeditor'] = $this->request->get['CKEditorFuncNum'];
+			$this->data['fckeditor'] = (int)$this->request->get['CKEditorFuncNum'];
 		} else {
 			$this->data['fckeditor'] = false;
 		}
