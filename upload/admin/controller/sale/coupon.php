@@ -308,7 +308,7 @@ class ControllerSaleCoupon extends Controller {
 		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->request->get['coupon_id'])) {
-			$this->data['coupon_id'] = $this->request->get['coupon_id'];
+			$this->data['coupon_id'] = (int)$this->request->get['coupon_id'];
 		} else {
 			$this->data['coupon_id'] = 0;
 		}
