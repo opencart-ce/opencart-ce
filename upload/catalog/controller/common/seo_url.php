@@ -92,6 +92,10 @@ class ControllerCommonSeoUrl extends Controller {
 
 						if ($query->num_rows) {
 							$url .= '/' . $query->row['keyword'];
+						} else {
+							$url = '';
+
+							break;
 						}
 					}
 
