@@ -408,6 +408,8 @@ class ControllerProductManufacturer extends Controller {
 
 			$this->data['continue'] = $this->url->link('common/home');
 
+			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
+
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/error/not_found.tpl';
 			} else {
@@ -422,8 +424,6 @@ class ControllerProductManufacturer extends Controller {
 				'common/footer',
 				'common/header'
 			);
-
-			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
 
 			$this->response->setOutput($this->render());
 		}

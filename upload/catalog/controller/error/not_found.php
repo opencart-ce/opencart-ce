@@ -47,6 +47,8 @@ class ControllerErrorNotFound extends Controller {
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
+		$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
+
 		$this->data['continue'] = $this->url->link('common/home');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
@@ -63,8 +65,6 @@ class ControllerErrorNotFound extends Controller {
 			'common/footer',
 			'common/header'
 		);
-
-		$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
 
 		$this->response->setOutput($this->render());
 	}

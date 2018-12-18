@@ -32,11 +32,7 @@ class ControllerModuleCategory extends Controller {
 		$categories = $this->model_catalog_category->getCategories(0);
 
 		foreach ($categories as $category) {
-			if ($this->config->get('config_product_count')) {
-				$total = $this->model_catalog_product->getTotalProducts(array('filter_category_id' => $category['category_id'], 'filter_sub_category' => true));
-			} else {
-				$total = 0;
-			}
+			$total = $this->config->get('config_product_count') ? $this->model_catalog_product->getTotalProducts(array('filter_category_id' => $category['category_id'], 'filter_sub_category' => true)) : 0;
 
 			$children_data = array();
 
@@ -48,11 +44,7 @@ class ControllerModuleCategory extends Controller {
 					'filter_sub_category' => true
 				);
 
-				if ($this->config->get('config_product_count')) {
-					$product_total = $this->model_catalog_product->getTotalProducts($data);
-				} else {
-					$product_total = 0;
-				}
+				$product_total = $this->config->get('config_product_count') ? $this->model_catalog_product->getTotalProducts($data) : 0;
 
 				$children_data[] = array(
 					'category_id' => $child['category_id'],
