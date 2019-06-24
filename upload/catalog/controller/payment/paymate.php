@@ -20,16 +20,16 @@ class ControllerPaymentPaymate extends Controller {
 		$this->data['ref'] = $order_info['order_id'];
 
 		$this->data['pmt_sender_email'] = $order_info['email'];
-		$this->data['pmt_contact_firstname'] = html_entity_decode($order_info['payment_firstname'], ENT_QUOTES, 'UTF-8');
-		$this->data['pmt_contact_surname'] = html_entity_decode($order_info['payment_lastname'], ENT_QUOTES, 'UTF-8');
+		$this->data['pmt_contact_firstname'] = $order_info['payment_firstname'];
+		$this->data['pmt_contact_surname'] = $order_info['payment_lastname'];
 		$this->data['pmt_contact_phone'] = $order_info['telephone'];
 		$this->data['pmt_country'] = $order_info['payment_iso_code_2'];
 
-		$this->data['regindi_address1'] = html_entity_decode($order_info['payment_address_1'], ENT_QUOTES, 'UTF-8');
-		$this->data['regindi_address2'] = html_entity_decode($order_info['payment_address_2'], ENT_QUOTES, 'UTF-8');
-		$this->data['regindi_sub'] = html_entity_decode($order_info['payment_city'], ENT_QUOTES, 'UTF-8');
-		$this->data['regindi_state'] = html_entity_decode($order_info['payment_zone'], ENT_QUOTES, 'UTF-8');
-		$this->data['regindi_pcode'] = html_entity_decode($order_info['payment_postcode'], ENT_QUOTES, 'UTF-8');
+		$this->data['regindi_address1'] = $order_info['payment_address_1'];
+		$this->data['regindi_address2'] = $order_info['payment_address_2'];
+		$this->data['regindi_sub'] = $order_info['payment_city'];
+		$this->data['regindi_state'] = $order_info['payment_zone'];
+		$this->data['regindi_pcode'] = $order_info['payment_postcode'];
 
 		$this->data['return'] = $this->url->link('payment/paymate/callback', 'hash=' . md5($order_info['order_id'] . $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false) . $order_info['currency_code'] . $this->config->get('paymate_password')));
 
