@@ -21,7 +21,6 @@ class ControllerPaymentPPStandard extends Controller {
 
 		if ($order_info) {
 			$this->data['business'] = $this->config->get('pp_standard_email');
-			$this->data['item_name'] = html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8');
 
 			$this->data['products'] = array();
 			$subtotal = 0;
@@ -75,15 +74,15 @@ class ControllerPaymentPPStandard extends Controller {
 			}
 
 			$this->data['currency_code'] = $order_info['currency_code'];
-			$this->data['first_name'] = html_entity_decode($order_info['payment_firstname'], ENT_QUOTES, 'UTF-8');
-			$this->data['last_name'] = html_entity_decode($order_info['payment_lastname'], ENT_QUOTES, 'UTF-8');
-			$this->data['address1'] = html_entity_decode($order_info['payment_address_1'], ENT_QUOTES, 'UTF-8');
-			$this->data['address2'] = html_entity_decode($order_info['payment_address_2'], ENT_QUOTES, 'UTF-8');
-			$this->data['city'] = html_entity_decode($order_info['payment_city'], ENT_QUOTES, 'UTF-8');
-			$this->data['zip'] = html_entity_decode($order_info['payment_postcode'], ENT_QUOTES, 'UTF-8');
+			$this->data['first_name'] = $order_info['payment_firstname'];
+			$this->data['last_name'] = $order_info['payment_lastname'];
+			$this->data['address1'] = $order_info['payment_address_1'];
+			$this->data['address2'] = $order_info['payment_address_2'];
+			$this->data['city'] = $order_info['payment_city'];
+			$this->data['zip'] = $order_info['payment_postcode'];
 			$this->data['country'] = $order_info['payment_iso_code_2'];
 			$this->data['email'] = $order_info['email'];
-			$this->data['invoice'] = $this->session->data['order_id'] . ' - ' . html_entity_decode($order_info['payment_firstname'], ENT_QUOTES, 'UTF-8') . ' ' . html_entity_decode($order_info['payment_lastname'], ENT_QUOTES, 'UTF-8');
+			$this->data['invoice'] = $this->session->data['order_id'] . ' - ' . $order_info['payment_firstname'] . ' ' . $order_info['payment_lastname'];
 			$this->data['lc'] = $this->session->data['language'];
 			$this->data['return'] = $this->url->link('checkout/success', '', 'SSL');
 			$this->data['notify_url'] = $this->url->link('payment/pp_standard/callback', '', 'SSL');
