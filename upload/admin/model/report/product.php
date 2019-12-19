@@ -72,7 +72,7 @@ class ModelReportProduct extends Model {
 		return $query->rows;
 	}
 
-	public function getTotalPurchased($data) {
+	public function getTotalPurchased($data = array()) {
 		$sql = "SELECT COUNT(DISTINCT op.model) AS total FROM `" . DB_PREFIX . "order_product` op LEFT JOIN `" . DB_PREFIX . "order` o ON (op.order_id = o.order_id)";
 
 		if (!empty($data['filter_order_status_id'])) {
