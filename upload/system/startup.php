@@ -3,8 +3,8 @@
 error_reporting(E_ALL);
 
 // Check Version
-if (version_compare(phpversion(), '5.2.1', '<') == true) {
-	exit('PHP 5.2.1 or later required');
+if (version_compare(phpversion(), '5.2.3', '<') == true) {
+	exit('PHP 5.2.3 or later required');
 }
 
 // Register Globals
