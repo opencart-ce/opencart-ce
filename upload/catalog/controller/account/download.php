@@ -202,7 +202,7 @@ class ControllerAccountDownload extends Controller {
 
 					exit;
 				} else {
-					exit('Error: Could not find file ' . $file . '!');
+					exit('Error: Could not find file ' . $mask . '!');
 				}
 			} else {
 				exit('Error: Headers already sent out!');
