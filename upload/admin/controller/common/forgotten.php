@@ -97,7 +97,7 @@ class ControllerCommonForgotten extends Controller {
 	}
 
 	protected function validate() {
-		if (!isset($this->request->post['email'])) {
+		if (!isset($this->request->post['email']) || $this->request->post['email'] == '') {
 			$this->error['warning'] = $this->language->get('error_email');
 		} elseif (!$this->model_user_user->getTotalUsersByEmail($this->request->post['email'])) {
 			$this->error['warning'] = $this->language->get('error_email');
