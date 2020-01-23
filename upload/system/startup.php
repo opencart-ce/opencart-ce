@@ -9,6 +9,7 @@ if (version_compare(phpversion(), '5.2.3', '<') == true) {
 
 // Register Globals
 if (ini_get('register_globals')) {
+	ini_set('session.use_cookies', 'On');
 	ini_set('session.use_only_cookies', 'On');
 	ini_set('session.use_trans_sid', 'Off');
 	ini_set('session.cookie_httponly', 'On');
