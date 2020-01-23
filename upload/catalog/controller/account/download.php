@@ -66,8 +66,8 @@ class ControllerAccountDownload extends Controller {
 			$results = $this->model_account_download->getDownloads(($page - 1) * $this->config->get('config_catalog_limit'), $this->config->get('config_catalog_limit'));
 
 			foreach ($results as $result) {
-				if (file_exists(DIR_DOWNLOAD . $result['filename'])) {
-					$size = filesize(DIR_DOWNLOAD . $result['filename']);
+				if (is_file(DIR_DOWNLOAD . basename($result['filename']))) {
+					$size = filesize(DIR_DOWNLOAD . basename($result['filename']));
 
 					$i = 0;
 
@@ -180,7 +180,7 @@ class ControllerAccountDownload extends Controller {
 		$download_info = $this->model_account_download->getDownload($order_download_id);
 
 		if ($download_info) {
-			$file = DIR_DOWNLOAD . $download_info['filename'];
+			$file = DIR_DOWNLOAD . basename($download_info['filename']);
 			$mask = basename($download_info['mask']);
 
 			if (!headers_sent()) {
