@@ -2293,7 +2293,7 @@ class ControllerSaleOrder extends Controller {
 		$option_info = $this->model_sale_order->getOrderOption($this->request->get['order_id'], $order_option_id);
 
 		if ($option_info && $option_info['type'] == 'file') {
-			$file = DIR_DOWNLOAD . $option_info['value'];
+			$file = DIR_DOWNLOAD . basename($option_info['value']);
 			$mask = basename(utf8_substr($option_info['value'], 0, utf8_strrpos($option_info['value'], '.')));
 
 			if (!headers_sent()) {
