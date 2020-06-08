@@ -2310,7 +2310,7 @@ class ControllerSaleOrder extends Controller {
 					readfile($file, 'rb');
 					exit;
 				} else {
-					exit('Error: Could not find file ' . $file . '!');
+					exit('Error: Could not find file ' . $mask . '!');
 				}
 			} else {
 				exit('Error: Headers already sent out!');
