@@ -139,7 +139,7 @@ class ControllerProductSpecial extends Controller {
 				'price'       => $price,
 				'special'     => $special,
 				'tax'         => $tax,
-				'rating'      => $result['rating'],
+				'rating'      => $rating,
 				'reviews'     => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
 				'href'        => $this->url->link('product/product', $url . '&product_id=' . $result['product_id'])
 			);
