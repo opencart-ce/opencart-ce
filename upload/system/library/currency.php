@@ -47,7 +47,7 @@ class Currency {
 		}
 
 		if (!isset($this->request->cookie['currency']) || ($this->request->cookie['currency'] != $currency)) {
-			setcookie('currency', $currency, time() + 60 * 60 * 24 * 30, '/', $this->request->server['HTTP_HOST']);
+			setcookie('currency', $currency, time() + 60 * 60 * 24 * 30, '/');
 		}
 	}
 

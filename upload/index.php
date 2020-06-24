@@ -178,7 +178,7 @@ if (!isset($session->data['language']) || $session->data['language'] != $code) {
 }
 
 if (!isset($request->cookie['language']) || $request->cookie['language'] != $code) {
-	setcookie('language', $code, time() + 60 * 60 * 24 * 30, '/', $request->server['HTTP_HOST']);
+	setcookie('language', $code, time() + 60 * 60 * 24 * 30, '/');
 }
 
 $config->set('config_language_id', $languages[$code]['language_id']);
