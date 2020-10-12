@@ -95,7 +95,7 @@ class ControllerPaymentWorldPay extends Controller {
 			$this->data['worldpay_password'] = $this->config->get('worldpay_password');
 		}
 
-		$this->data['callback'] = HTTP_CATALOG . 'index.php?route=payment/worldpay/callback';
+		$this->data['callback'] = ($this->config->get('config_secure') ? HTTPS_CATALOG : HTTP_CATALOG) . 'index.php?route=payment/worldpay/callback';
 
 		if (isset($this->request->post['worldpay_test'])) {
 			$this->data['worldpay_test'] = $this->request->post['worldpay_test'];

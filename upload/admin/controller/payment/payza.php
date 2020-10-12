@@ -89,7 +89,7 @@ class ControllerPaymentPayza extends Controller {
 			$this->data['payza_security'] = $this->config->get('payza_security');
 		}
 
-		$this->data['callback'] = HTTP_CATALOG . 'index.php?route=payment/payza/callback';
+		$this->data['callback'] = ($this->config->get('config_secure') ? HTTPS_CATALOG : HTTP_CATALOG) . 'index.php?route=payment/payza/callback';
 
 		if (isset($this->request->post['payza_total'])) {
 			$this->data['payza_total'] = $this->request->post['payza_total'];
