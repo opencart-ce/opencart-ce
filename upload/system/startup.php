@@ -9,21 +9,7 @@ if (version_compare(phpversion(), '5.2.3', '<') == true) {
 
 // Register Globals
 if (ini_get('register_globals')) {
-	ini_set('session.use_cookies', 'On');
-	ini_set('session.use_only_cookies', 'On');
-	ini_set('session.use_trans_sid', 'Off');
-	ini_set('session.cookie_httponly', 'On');
-
-	session_set_cookie_params(0, '/');
-	session_start();
-
-	$globals = array($_REQUEST, $_SESSION, $_SERVER, $_FILES);
-
-	foreach ($globals as $global) {
-		foreach(array_keys($global) as $key) {
-			unset(${$key});
-		}
-	}
+	exit('PHP directive register_globals must be set to Off');
 }
 
 // Magic Quotes Fix
