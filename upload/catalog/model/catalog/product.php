@@ -535,7 +535,7 @@ class ModelCatalogProduct extends Model {
 			}
 
 			if (!empty($data['filter_tag'])) {
-				$sql .= "pd.tag LIKE '%" . $this->db->escape(utf8_strtolower($data['filter_tag'])) . "%'";
+				$sql .= "pd.tag LIKE '%" . $this->db->escape($data['filter_tag']) . "%'";
 			}
 
 			if (!empty($data['filter_name'])) {
