@@ -10,9 +10,14 @@ Options +FollowSymlinks
 Options -Indexes
 
 # Prevent Direct Access to files
-<FilesMatch "\.(tpl|ini|log)">
- Order deny,allow
- Deny from all
+<FilesMatch "\.(tpl|ini|log)$">
+ <IfModule mod_authz_core.c>
+  Require all denied
+ </IfModule>
+ <IfModule !mod_authz_core.c>
+  Order Deny,Allow
+  Deny from all
+ </IfModule>
 </FilesMatch>
 
 # SEO URL Settings
