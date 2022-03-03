@@ -75,10 +75,17 @@
             <td align="center"><?php echo extension_loaded('curl') ? '<img src="view/image/good.png" alt="Good" />' : '<img src="view/image/bad.png" alt="Bad" />'; ?></td>
           </tr>
           <tr>
+          <?php if (version_compare(PHP_VERSION, '7.1', '>=')) { ?>
+          <td>OpenSSL:</td>
+          <td><?php echo function_exists('openssl_encrypt') ? 'On' : 'Off'; ?></td>
+          <td>On</td>
+          <td align="center"><?php echo function_exists('openssl_encrypt') ? '<img src="view/image/good.png" alt="Good" />' : '<img src="view/image/bad.png" alt="Bad" />'; ?></td>
+          <?php } else { ?>
             <td>mCrypt:</td>
             <td><?php echo function_exists('mcrypt_encrypt') ? 'On' : 'Off'; ?></td>
             <td>On</td>
             <td align="center"><?php echo function_exists('mcrypt_encrypt') ? '<img src="view/image/good.png" alt="Good" />' : '<img src="view/image/bad.png" alt="Bad" />'; ?></td>
+          <?php } ?>
           </tr>
           <tr>
             <td>ZIP:</td>
