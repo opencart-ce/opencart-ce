@@ -540,6 +540,18 @@ class ControllerCheckoutCart extends Controller {
 			}
 
 			if (!$json) {
+				foreach ($product_options as $product_option) {
+					if ($product_option['type'] == 'file' && !empty($option[$product_option['product_option_id']])) {
+						$file = $option[$product_option['product_option_id']];
+
+						if (ctype_xdigit($file) && isset($this->session->data['upload_file'][$file])) {
+							$option[$product_option['product_option_id']] = $this->session->data['upload_file'][$file];
+						} else {
+							$option[$product_option['product_option_id']] = '';
+						}
+					}
+				}
+
 				$this->cart->add($this->request->post['product_id'], $quantity, $option);
 
 				$json['success'] = sprintf($this->language->get('text_success'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']), $product_info['name'], $this->url->link('checkout/cart'));

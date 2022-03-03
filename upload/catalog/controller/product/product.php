@@ -711,7 +711,9 @@ class ControllerProductProduct extends Controller {
 			$file = basename($filename) . '.' . hash_rand('md5');
 
 			// Hide the uploaded file name so people can not link to it directly.
-			$json['file'] = $this->encryption->encrypt($file);
+			$json['file'] = hash_rand('md5');
+
+			$this->session->data['upload_file'][$json['file']] = $this->encryption->encrypt($file);
 
 			move_uploaded_file($this->request->files['file']['tmp_name'], DIR_DOWNLOAD . $file);
 
