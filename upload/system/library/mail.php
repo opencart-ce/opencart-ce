@@ -78,6 +78,10 @@ class Mail {
 			$to = $this->to;
 		}
 
+		if ($this->protocol == 'mail' && (version_compare(phpversion(), '8.0', '>=') || substr(PHP_OS, 0, 3) == 'WIN')) {
+			$this->newline = "\r\n";
+		}
+
 		$boundary = '----=_NextPart_' . md5(time());
 
 		$header = '';
