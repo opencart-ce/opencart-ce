@@ -60,7 +60,7 @@ function error_handler($errno, $errstr, $errfile, $errline) {
 	global $log, $config;
 
 	// error suppressed with @
-	if (error_reporting() === 0) {
+	if (!(error_reporting() & $errno)) {
 		return false;
 	}
 
