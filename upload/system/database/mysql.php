@@ -14,7 +14,7 @@ final class MySQL {
 		mysql_query("SET NAMES 'utf8'", $this->link);
 		mysql_set_charset("utf8", $this->link);
 		mysql_query("SET CHARACTER_SET_CONNECTION=utf8", $this->link);
-		mysql_query("SET SQL_MODE = ''", $this->link);
+		mysql_query("SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION'", $this->link);
 	}
 
 	public function query($sql) {
