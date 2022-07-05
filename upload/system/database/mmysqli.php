@@ -10,7 +10,7 @@ final class mMySQLi {
 		}
 
 		$this->link->set_charset("utf8");
-		$this->link->query("SET SQL_MODE = ''");
+		$this->link->query("SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION'");
 	}
 
 	public function query($sql) {

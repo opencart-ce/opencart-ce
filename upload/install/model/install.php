@@ -37,8 +37,6 @@ class ModelInstall extends Model {
 
 			mysql_query("SET CHARACTER SET utf8", $connection);
 
-			mysql_query("SET @@session.sql_mode = 'MYSQL40'", $connection);
-
 			mysql_query("DELETE FROM `" . $data['db_prefix'] . "user` WHERE user_id = '1'");
 
 			mysql_query("INSERT INTO `" . $data['db_prefix'] . "user` SET user_id = '1', user_group_id = '1', username = '" . mysql_real_escape_string($data['username']) . "', salt = '" . mysql_real_escape_string($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . mysql_real_escape_string(sha1($salt . sha1($salt . sha1($data['password'])))) . "', status = '1', email = '" . mysql_real_escape_string($data['email']) . "', date_added = NOW()", $connection);
