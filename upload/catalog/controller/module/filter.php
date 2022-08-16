@@ -34,7 +34,7 @@ class ControllerModuleFilter extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
-			$this->data['action'] = str_replace('&amp;', '&', $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url));
+			$this->data['action'] = str_replace('&amp;', '&', $this->url->link('product/category', 'path=' . preg_replace('/[^0-9_]/', '', $this->request->get['path']) . preg_replace('/[^a-zA-Z0-9_\.&=]/', '', $url)));
 
 			if (isset($this->request->get['filter'])) {
 				$this->data['filter_category'] = explode(',', $this->request->get['filter']);
