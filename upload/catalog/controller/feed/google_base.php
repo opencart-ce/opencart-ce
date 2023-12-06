@@ -23,7 +23,7 @@ class ControllerFeedGoogleBase extends Controller {
 					$output .= '<title>' . $product['name'] . '</title>';
 					$output .= '<link>' . $this->url->link('product/product', 'product_id=' . $product['product_id']) . '</link>';
 					$output .= '<description>' . $product['description'] . '</description>';
-					$output .= '<g:brand>' . html_entity_decode($product['manufacturer'], ENT_QUOTES, 'UTF-8') . '</g:brand>';
+					$output .= '<g:brand>' . $product['manufacturer'] . '</g:brand>';
 					$output .= '<g:condition>new</g:condition>';
 					$output .= '<g:id>' . $product['product_id'] . '</g:id>';
 
