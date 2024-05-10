@@ -38,7 +38,7 @@ class ControllerToolErrorLog extends Controller {
 		$file = DIR_LOGS . $this->config->get('config_error_filename');
 
 		if (file_exists($file)) {
-			$this->data['log'] = file_get_contents($file, FILE_USE_INCLUDE_PATH, null);
+			$this->data['log'] = htmlspecialchars(file_get_contents($file), ENT_COMPAT, 'UTF-8');
 		} else {
 			$this->data['log'] = '';
 		}
