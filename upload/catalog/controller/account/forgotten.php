@@ -22,7 +22,9 @@ class ControllerAccountForgotten extends Controller {
 
 			$password = substr(hash_rand('sha1'), 0, 10);
 
-			$this->model_account_customer->editPassword($this->request->post['email'], $password);
+			$customer_info = $this->model_account_customer->getCustomerByEmail($this->request->post['email']);
+
+			$this->model_account_customer->editPassword($customer_info['email'], $password);
 
 			$subject = sprintf($this->language->get('text_subject'), $this->config->get('config_name'));
 
@@ -38,7 +40,7 @@ class ControllerAccountForgotten extends Controller {
 			$mail->password = $this->config->get('config_smtp_password');
 			$mail->port = $this->config->get('config_smtp_port');
 			$mail->timeout = $this->config->get('config_smtp_timeout');
-			$mail->setTo($this->request->post['email']);
+			$mail->setTo($customer_info['email']);
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender($this->config->get('config_name'));
 			$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));

@@ -14,7 +14,9 @@ class ControllerCommonForgotten extends Controller {
 
 			$code = hash_rand('sha1');
 
-			$this->model_user_user->editCode($this->request->post['email'], $code);
+			$user_info = $this->model_user_user->getUserByEmail($this->request->post['email']);
+
+			$this->model_user_user->editCode($user_info['email'], $code);
 
 			$subject = sprintf($this->language->get('text_subject'), $this->config->get('config_name'));
 
@@ -31,7 +33,7 @@ class ControllerCommonForgotten extends Controller {
 			$mail->password = $this->config->get('config_smtp_password');
 			$mail->port = $this->config->get('config_smtp_port');
 			$mail->timeout = $this->config->get('config_smtp_timeout');
-			$mail->setTo($this->request->post['email']);
+			$mail->setTo($user_info['email']);
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender($this->config->get('config_name'));
 			$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
