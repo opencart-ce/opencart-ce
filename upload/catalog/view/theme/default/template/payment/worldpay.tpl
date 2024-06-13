@@ -11,6 +11,9 @@
   <input type="hidden" name="tel" value="<?php echo $telephone; ?>" />
   <input type="hidden" name="email" value="<?php echo $email; ?>" />
   <input type="hidden" name="testMode" value="<?php echo $test; ?>" />
+  <?php if ($signature) { ?>
+  <input type="hidden" name="signature" value="<?php echo $signature; ?>" />
+  <?php } ?>
   <div class="buttons">
     <div class="right">
       <input type="submit" value="<?php echo $button_confirm; ?>" class="button" />

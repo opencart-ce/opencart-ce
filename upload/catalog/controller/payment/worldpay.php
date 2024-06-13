@@ -32,6 +32,12 @@ class ControllerPaymentWorldPay extends Controller {
 		$this->data['email'] = $order_info['email'];
 		$this->data['test'] = $this->config->get('worldpay_test');
 
+		if ($this->config->get('worldpay_signature')) {
+			$this->data['signature'] = md5(htmlspecialchars_decode($this->config->get('worldpay_signature'), ENT_COMPAT) . ':' . $this->data['merchant'] . ':' . $this->data['amount'] . ':' . $this->data['currency'] . ':' . $this->data['order_id']);
+		} else {
+			$this->data['signature'] = '';
+		}
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/worldpay.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/worldpay.tpl';
 		} else {

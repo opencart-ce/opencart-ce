@@ -31,6 +31,7 @@ class ControllerPaymentWorldPay extends Controller {
 		$this->data['entry_merchant'] = $this->language->get('entry_merchant');
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_callback'] = $this->language->get('entry_callback');
+		$this->data['entry_signature'] = $this->language->get('entry_signature');
 		$this->data['entry_test'] = $this->language->get('entry_test');
 		$this->data['entry_total'] = $this->language->get('entry_total');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
@@ -96,6 +97,12 @@ class ControllerPaymentWorldPay extends Controller {
 		}
 
 		$this->data['callback'] = ($this->config->get('config_secure') ? HTTPS_CATALOG : HTTP_CATALOG) . 'index.php?route=payment/worldpay/callback';
+
+		if (isset($this->request->post['worldpay_signature'])) {
+			$this->data['worldpay_signature'] = $this->request->post['worldpay_signature'];
+		} else {
+			$this->data['worldpay_signature'] = $this->config->get('worldpay_signature');
+		}
 
 		if (isset($this->request->post['worldpay_test'])) {
 			$this->data['worldpay_test'] = $this->request->post['worldpay_test'];

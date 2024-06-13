@@ -35,6 +35,10 @@
             <td><textarea cols="40" rows="5"><?php echo $callback; ?></textarea></td>
           </tr>
           <tr>
+            <td><?php echo $entry_signature; ?></td>
+            <td><input type="text" name="worldpay_signature" value="<?php echo $worldpay_signature; ?>" />
+          </tr>
+          <tr>
             <td><?php echo $entry_test; ?></td>
             <td><select name="worldpay_test">
                 <?php if ($worldpay_test == '0') { ?>
