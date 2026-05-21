@@ -1,7 +1,11 @@
 <?php
 class Cart {
 	private $config;
+	private $customer;
+	private $session;
 	private $db;
+	private $tax;
+	private $weight;
 	private $data = array();
 
 	public function __construct($registry) {

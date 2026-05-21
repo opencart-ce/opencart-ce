@@ -1,5 +1,10 @@
 <?php
 class Currency {
+	private $config;
+	private $db;
+	private $language;
+	private $request;
+	private $session;
 	private $code;
 	private $currencies = array();
 
