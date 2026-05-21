@@ -1,5 +1,8 @@
 <?php
 class User {
+	private $db;
+	private $request;
+	private $session;
 	private $user_id;
 	private $username;
 	private $permission = array();

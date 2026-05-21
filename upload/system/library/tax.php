@@ -1,5 +1,9 @@
 <?php
 final class Tax {
+	private $config;
+	private $customer;
+	private $db;
+	private $session;
 	private $shipping_address;
 	private $payment_address;
 	private $store_address;
